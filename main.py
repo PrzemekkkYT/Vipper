@@ -206,4 +206,4 @@ async def play(ctx, url : str):
         await ctx.send(embed=queueembed)
         
 
-client.run('NDgyNTU3MDEwNjgxMDA0MDMy.XmVz_w.tCsXncrUa6vtlUZlas6NsZ02HdM')
+client.run('TOKEN')

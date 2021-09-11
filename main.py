@@ -100,4 +100,4 @@ async def sendembed(ctx, color : int, *, title):
     embed = discord.Embed(title=title, color=color)
     await ctx.send(embed=embed)
 
-client.run('NDgyNTU3MDEwNjgxMDA0MDMy.W4AWPA.t-vzewNfa_RMiNEYkrCqICUXAF4')
+client.run('TOKEN')

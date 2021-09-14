@@ -1,0 +1,755 @@
+{
+    "logs": [
+        {
+            "message_id": 886147097789878323,
+            "message_ca": "2021-09-11 09:12:11.930000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "jkjkxzcjkxvzjkxzcvjk",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886147202320318504,
+            "message_ca": "2021-09-11 09:12:36.852000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "v!help music",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886147434844151839,
+            "message_ca": "2021-09-11 09:13:32.290000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "v!help music",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886147436047904778,
+            "message_ca": "2021-09-11 09:13:32.577000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Vipper#9675",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#55ff55",
+                    "title": "Kategoria: Music",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "leave",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "play",
+                            "value": "Służy do odtwarzania muzyki",
+                            "inline": false
+                        },
+                        {
+                            "name": "stop",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "skip",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "pause",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "resume",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "queue",
+                            "value": "None",
+                            "inline": false
+                        },
+                        {
+                            "name": "connect",
+                            "value": "None",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "Embed.Empty",
+                    "thumbnail": "Embed.Empty",
+                    "type": "rich",
+                    "url": "Embed.Empty",
+                    "video": "Embed.Empty"
+                }
+            ]
+        },
+        {
+            "message_id": 886147585075736576,
+            "message_ca": "2021-09-11 09:14:08.108000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "v!fgembed 823965213526589490 epicgames 10-09-2021 https://upload.wikimedia.org/wikipedia/commons/7/78/Ubisoft_logo.svg summer time",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886147586204000286,
+            "message_ca": "2021-09-11 09:14:08.377000",
+            "channel_name": "fg-test",
+            "channel_id": 823965213526589490,
+            "author": "Vipper#9675",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "Embed.Empty",
+                    "title": "summer time",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Darmowe do",
+                            "value": "10.09.2021",
+                            "inline": true
+                        }
+                    ],
+                    "footer": {
+                        "text": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "Embed.Empty",
+                    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Epic_games_store_logo.png",
+                    "type": "rich",
+                    "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Ubisoft_logo.svg",
+                    "video": "Embed.Empty"
+                }
+            ]
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886149731183652874,
+            "message_ca": "2021-09-11 09:22:39.780000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "ąśęćźż",
+            "attachments": [
+                {
+                    "id": 886149730961350686,
+                    "filename": "unknown.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886149730961350686/unknown.png",
+                    "content_type": "image/png",
+                    "height": 568,
+                    "width": 472,
+                    "size": 54299,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886149730961350686/unknown.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886153414671728722,
+            "message_ca": "2021-09-11 09:37:17.992000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "sadiofsdoifahfshdfkljds",
+            "attachments": [
+                {
+                    "id": 886153414634008586,
+                    "filename": "petergriffin.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886153414634008586/petergriffin.png",
+                    "content_type": "image/png",
+                    "height": 350,
+                    "width": 350,
+                    "size": 68260,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886153414634008586/petergriffin.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886153713281040404,
+            "message_ca": "2021-09-11 09:38:29.186000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "sdfsdgkjasdgjsda",
+            "attachments": [
+                {
+                    "id": 886153713050325042,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886153713050325042/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886153713050325042/puszek.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886153713281040404,
+            "message_ca": {
+                "before": "2021-09-11 09:38:29.186000",
+                "after": "2021-09-11 09:38:29.186000"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "sdfsdgkjasdgjsda",
+                "after": "sdiughdsiuaofs"
+            },
+            "attachments": [
+                {
+                    "id": 886153713050325042,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886153713050325042/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886153713050325042/puszek.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886154169369657354,
+            "message_ca": "2021-09-11 09:40:17.926000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "dsafasdgiuaiuawfhodsf",
+            "attachments": [
+                {
+                    "id": 886154169130557470,
+                    "filename": "trrebusz-kocyk.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886154169130557470/trrebusz-kocyk.png",
+                    "content_type": "image/png",
+                    "height": 290,
+                    "width": 290,
+                    "size": 105148,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886154169130557470/trrebusz-kocyk.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886154169369657354,
+            "message_ca": {
+                "before": "2021-09-11 09:40:17.926000",
+                "after": "2021-09-11 09:57:08.832151"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "dsafasdgiuaiuawfhodsf",
+                "after": "vcixviowdagfaof"
+            },
+            "attachments": [
+                {
+                    "id": 886154169130557470,
+                    "filename": "trrebusz-kocyk.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886154169130557470/trrebusz-kocyk.png",
+                    "content_type": "image/png",
+                    "height": 290,
+                    "width": 290,
+                    "size": 105148,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886154169130557470/trrebusz-kocyk.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886163936448233474,
+            "message_ca": "2021-09-11 10:19:06.579000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "dskjvschkdfshkdfjkdfjkuhciudiugviugviugviug",
+            "attachments": [
+                {
+                    "id": 886163936599220244,
+                    "filename": "unknown.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886163936599220244/unknown.png",
+                    "content_type": "image/png",
+                    "height": 1080,
+                    "width": 1920,
+                    "size": 154216,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886163936599220244/unknown.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.edit",
+            "message_id": 886163936448233474,
+            "message_ca": {
+                "before": "2021-09-11 10:19:06.579000",
+                "after": "2021-09-11 10:19:19.179705"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "dskjvschkdfshkdfjkdfjkuhciudiugviugviugviug",
+                "after": "98hy08y8ygw8yugy8y88y"
+            },
+            "attachments": [
+                {
+                    "id": 886163936599220244,
+                    "filename": "unknown.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886163936599220244/unknown.png",
+                    "content_type": "image/png",
+                    "height": 1080,
+                    "width": 1920,
+                    "size": 154216,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886163936599220244/unknown.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886165956387291236,
+            "message_ca": "2021-09-11 10:27:08.170000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "uihdfuihdfuhidfshu",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886165959432339496,
+            "message_ca": "2021-09-11 10:27:08.896000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "MEE6#4876",
+            "content": "GG <@183242057882664961>, you just advanced to level 7!",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.edit",
+            "message_id": 886165956387291236,
+            "message_ca": {
+                "before": "2021-09-11 10:27:08.170000",
+                "after": "2021-09-11 10:27:27.768928"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "uihdfuihdfuhidfshu",
+                "after": "9v8y 9y8fpe8wyfy8psadp9"
+            },
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.delete",
+            "message_id": 886165956387291236,
+            "message_ca": "2021-09-11 10:27:08.170000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "9v8y 9y8fpe8wyfy8psadp9",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.delete",
+            "message_id": 886165959432339496,
+            "message_ca": "2021-09-11 10:27:08.896000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "MEE6#4876",
+            "content": "GG <@183242057882664961>, you just advanced to level 7!",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886166203964489748,
+            "message_ca": "2021-09-11 10:28:07.197000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "v!help",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886166205734461440,
+            "message_ca": "2021-09-11 10:28:07.619000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Vipper#9675",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#55ff55",
+                    "title": "Komendy bota Vipper:",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Music",
+                            "value": "leave, play, stop, skip, pause, resume, queue, connect",
+                            "inline": false
+                        },
+                        {
+                            "name": "Tests",
+                            "value": "buttonstest, testhelp, testhelpauto, hasembed, mca, fgembed, database, jsonsave",
+                            "inline": false
+                        },
+                        {
+                            "name": "Nieskategoryzowane",
+                            "value": "test, active, act, serverinfo, owtest, owner_find, embedtest, serverinfoembed, sendembed",
+                            "inline": false
+                        },
+                        {
+                            "name": "Logs",
+                            "value": "saveconvo, downloadlog",
+                            "inline": false
+                        },
+                        {
+                            "name": "Utilities",
+                            "value": "help",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Możesz sprawdzić informacje o dowolnej komendzie lub kategorii wpisując jej nazwę jako argument. Przykład: v!help play",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "Embed.Empty",
+                    "thumbnail": "Embed.Empty",
+                    "type": "rich",
+                    "url": "Embed.Empty",
+                    "video": "Embed.Empty"
+                }
+            ]
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886171862143492106,
+            "message_ca": "2021-09-11 10:50:36.212000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "fdfdkjfaklfdaf",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886171904426250240,
+            "message_ca": "2021-09-11 10:50:46.293000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "v!help",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886171905609044011,
+            "message_ca": "2021-09-11 10:50:46.575000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Vipper#9675",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#55ff55",
+                    "title": "Komendy bota Vipper:",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Music",
+                            "value": "leave, play, stop, skip, pause, resume, queue, connect",
+                            "inline": false
+                        },
+                        {
+                            "name": "Tests",
+                            "value": "buttonstest, testhelp, testhelpauto, hasembed, mca, fgembed, database, jsonsave",
+                            "inline": false
+                        },
+                        {
+                            "name": "Nieskategoryzowane",
+                            "value": "test, active, act, serverinfo, owtest, owner_find, embedtest, serverinfoembed, sendembed",
+                            "inline": false
+                        },
+                        {
+                            "name": "Logs",
+                            "value": "saveconvo, downloadlog",
+                            "inline": false
+                        },
+                        {
+                            "name": "Utilities",
+                            "value": "help",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Możesz sprawdzić informacje o dowolnej komendzie lub kategorii wpisując jej nazwę jako argument. Przykład: v!help play",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "Embed.Empty",
+                    "thumbnail": "Embed.Empty",
+                    "type": "rich",
+                    "url": "Embed.Empty",
+                    "video": "Embed.Empty"
+                }
+            ]
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886176360282857474,
+            "message_ca": "2021-09-11 11:08:28.652000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "jd",
+                "after": "pl"
+            },
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "message_id": 886177459555401728,
+            "message_ca": "2021-09-11 11:12:50.739000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asdf",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.edit",
+            "message_id": 886177459555401728,
+            "message_ca": {
+                "before": "2021-09-11 11:12:50.739000",
+                "after": "2021-09-11 11:12:58.071665"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "asdf",
+                "after": "qwerty"
+            },
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886178973162287114",
+            "message_id": 886178973162287114,
+            "message_ca": "2021-09-11 11:18:51.611000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asdf",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.edit",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886178973162287114",
+            "message_id": 886178973162287114,
+            "message_ca": {
+                "before": "2021-09-11 11:18:51.611000",
+                "after": "2021-09-11 11:18:59.657562"
+            },
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "asdf",
+                "after": "qwerty"
+            },
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.delete",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886178973162287114",
+            "message_id": 886178973162287114,
+            "message_ca": "2021-09-11 11:18:51.611000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "qwerty",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886181024525074432",
+            "message_id": 886181024525074432,
+            "message_ca": "2021-09-11 11:27:00.694000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886181209481285643",
+            "message_id": 886181209481285643,
+            "message_ca": "2021-09-11 11:27:44.791000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886181510498107452",
+            "message_id": 886181510498107452,
+            "message_ca": "2021-09-11 11:28:56.559000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886181510498107452",
+            "message_id": 886181510498107452,
+            "message_ca": "2021-09-11 11:28:56.559000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886192720408887346",
+            "message_id": 886192720408887346,
+            "message_ca": "2021-09-11 12:13:29.210000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886192720408887346",
+            "message_id": 886192720408887346,
+            "message_ca": "2021-09-11 12:13:29.210000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": false,
+                "emoji": "👍",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886192778445467668",
+            "message_id": 886192778445467668,
+            "message_ca": "2021-09-11 12:13:43.047000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/575414543392702480/884130923384299561/886196919553118238",
+            "message_id": 886196919553118238,
+            "message_ca": "2021-09-11 12:30:10.364000",
+            "channel_name": "dfjgklagsa",
+            "channel_id": 884130923384299561,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886196919272079400,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/884130923384299561/886196919272079400/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/884130923384299561/886196919272079400/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": []
+        }
+    ]
+}

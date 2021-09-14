@@ -1,0 +1,982 @@
+{
+    "logs": [
+        {
+            "message_id": 886147052201996288,
+            "message_ca": "2021-09-11 09:12:01.061000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "sdfkjdfsjkdfjkfkjsfh",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886148751603937291,
+            "message_ca": "2021-09-11 09:18:46.230000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Żukasz#3699",
+            "content": "Hfhsusgsjxhx",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886148907955015711,
+            "message_ca": "2021-09-11 09:19:23.507000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "ghasdjksadjksadjk",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886148930088366131,
+            "message_ca": "2021-09-11 09:19:28.784000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "testuje jak bot zapisuje logi",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886148946261598218,
+            "message_ca": "2021-09-11 09:19:32.640000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "bo zmieniłem",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886148991702667304,
+            "message_ca": "2021-09-11 09:19:43.474000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "dlatego randomowe znaki",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "message_id": 886149126822182912,
+            "message_ca": "2021-09-11 09:20:15.689000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "teraz zapisuje bardziej czytelnie i dokładnie",
+            "attachments": [
+                {
+                    "id": 886149126524391474,
+                    "filename": "unknown.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886149126524391474/unknown.png",
+                    "content_type": "image/png",
+                    "height": 568,
+                    "width": 472,
+                    "size": 54299,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886149126524391474/unknown.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:Wootler:806955177868787762>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 2,
+                "custom_emoji": true,
+                "emoji": "<:Wootler:806955177868787762>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193082440228945",
+            "message_id": 886193082440228945,
+            "message_ca": "2021-09-11 12:14:55.525000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "dobra, działa, dziena",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193114686033940",
+            "message_id": 886193114686033940,
+            "message_ca": "2021-09-11 12:15:03.213000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Żukasz#3699",
+            "content": "typowe ze moja emotka",
+            "attachments": [],
+            "embeds": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:Bszemeggg:807019305162113054>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 2,
+                "custom_emoji": true,
+                "emoji": "<:Bszemeggg:807019305162113054>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886192835299266591",
+            "message_id": 886192835299266591,
+            "message_ca": "2021-09-11 12:13:56.602000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "asd",
+            "attachments": [],
+            "embeds": [],
+            "reaction.add": {
+                "count": 2,
+                "custom_emoji": true,
+                "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193385596133386",
+            "message_id": 886193385596133386,
+            "message_ca": "2021-09-11 12:16:07.803000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886193385235415100,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886193385235415100/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886193385235415100/puszek.png"
+                }
+            ],
+            "embeds": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193385596133386",
+            "message_id": 886193385596133386,
+            "message_ca": "2021-09-11 12:16:07.803000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886193385235415100,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886193385235415100/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886193385235415100/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193385596133386",
+            "message_id": 886193385596133386,
+            "message_ca": "2021-09-11 12:16:07.803000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886193385235415100,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886193385235415100/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886193385235415100/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reaction.add": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:mamut:788039815987462154>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886193385596133386",
+            "message_id": 886193385596133386,
+            "message_ca": "2021-09-11 12:16:07.803000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886193385235415100,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886193385235415100/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886193385235415100/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reaction.add": {
+                "count": 2,
+                "custom_emoji": true,
+                "emoji": "<:mamut:788039815987462154>",
+                "me": false
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": "2021-09-11 12:30:33.590000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": "2021-09-11 12:30:33.590000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ],
+            "reaction.added": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:Wootler:806955177868787762>",
+                "me": false,
+                "user": {
+                    "name": "Przemekkk",
+                    "mention": "<@!183242057882664961>",
+                    "bot": false
+                }
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197304913186857",
+            "message_id": 886197304913186857,
+            "message_ca": "2021-09-11 12:31:42.241000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "3",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.delete",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197304913186857",
+            "message_id": 886197304913186857,
+            "message_ca": "2021-09-11 12:31:42.241000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "3",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": "2021-09-11 12:30:33.590000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "",
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                },
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                    "me": false
+                }
+            ],
+            "reaction.added": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                "me": false,
+                "user": {
+                    "name": "Przemekkk",
+                    "mention": "<@!183242057882664961>",
+                    "bot": false
+                }
+            }
+        },
+        {
+            "action_type": "message.edit",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": {
+                "before": "2021-09-11 12:30:33.590000",
+                "after": "2021-09-11 12:34:00.332596"
+            },
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "",
+                "after": "123"
+            },
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                },
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                    "me": false
+                }
+            ]
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": "2021-09-11 12:30:33.590000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "123",
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ],
+            "reaction.removed": {
+                "count": 0,
+                "custom_emoji": true,
+                "emoji": "<:AAAAAAAAAAAAAAAAAAA:781616740277813319>",
+                "me": false,
+                "user": {
+                    "name": "Przemekkk",
+                    "mention": "<@!183242057882664961>",
+                    "bot": false
+                }
+            }
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886197016970035241",
+            "message_id": 886197016970035241,
+            "message_ca": "2021-09-11 12:30:33.590000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "123",
+            "attachments": [
+                {
+                    "id": 886197015892082698,
+                    "filename": "puszek.png",
+                    "url": "https://cdn.discordapp.com/attachments/485194231665786888/886197015892082698/puszek.png",
+                    "content_type": "image/png",
+                    "height": 922,
+                    "width": 802,
+                    "size": 713925,
+                    "proxy_url": "https://media.discordapp.net/attachments/485194231665786888/886197015892082698/puszek.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 2,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ],
+            "reaction.added": {
+                "count": 2,
+                "custom_emoji": true,
+                "emoji": "<:Wootler:806955177868787762>",
+                "me": false,
+                "user": {
+                    "name": "duckhead",
+                    "mention": "<@!364441716566261780>",
+                    "bot": false
+                }
+            }
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886199553404059668",
+            "message_id": 886199553404059668,
+            "message_ca": "2021-09-11 12:40:38.323000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Żukasz#3699",
+            "content": "456",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886225623691956294",
+            "message_id": 886225623691956294,
+            "message_ca": "2021-09-11 14:24:13.964000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "Żukasz#3699",
+            "content": ".ocr",
+            "attachments": [
+                {
+                    "id": 886225623473856572,
+                    "filename": "unknown.png",
+                    "url": "https://cdn.discordapp.com/attachments/786953727977455617/886225623473856572/unknown.png",
+                    "content_type": "image/png",
+                    "height": 34,
+                    "width": 88,
+                    "size": 749,
+                    "proxy_url": "https://media.discordapp.net/attachments/786953727977455617/886225623473856572/unknown.png"
+                }
+            ],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886225633422766090",
+            "message_id": 886225633422766090,
+            "message_ca": "2021-09-11 14:24:16.284000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "NotSoBot#9555",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Żukasz#3699",
+                        "url": "https://discord.com/users/725711519765233676",
+                        "icon_url": "https://cdn.discordapp.com/avatars/725711519765233676/8c18b91367335fa6a007fafaf1ce0957.png?size=1024"
+                    },
+                    "colour": "#848585",
+                    "title": "Undetermined Language Text",
+                    "description": "```\n拉姆齊\n\n```",
+                    "fields": [],
+                    "footer": {
+                        "text": "Optical Character Recognition",
+                        "icon_url": "https://cdn.notsobot.com/brands/google-go.png"
+                    },
+                    "image": "Embed.Empty",
+                    "thumbnail": "https://cdn.discordapp.com/attachments/786953727977455617/886225623473856572/unknown.png",
+                    "type": "rich",
+                    "url": "Embed.Empty",
+                    "video": "Embed.Empty"
+                }
+            ],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886227575024807967",
+            "message_id": 886227575024807967,
+            "message_ca": "2021-09-11 14:31:59.198000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "Przemekkk#5553",
+            "content": "chiński",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886244877262786580",
+            "message_id": 886244877262786580,
+            "message_ca": "2021-09-11 15:40:44.373000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "Żukasz#3699",
+            "content": "wiem że chinśki tylko sprawdzałem znaczenie",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886259336198909962",
+            "message_id": 886259336198909962,
+            "message_ca": "2021-09-11 16:38:11.652000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "Przemekkk#5553",
+            "content": "chuj",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/789178794602528798/886267918109769778",
+            "message_id": 886267918109769778,
+            "message_ca": "2021-09-11 17:12:17.739000",
+            "channel_name": "darmówki",
+            "channel_id": 789178794602528798,
+            "author": "Free Games Bot#5261",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#2f3136",
+                    "title": "Sheltered",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Free Until",
+                            "value": "📅 September 16, 2021, 3 PM UTC",
+                            "inline": false
+                        },
+                        {
+                            "name": "State",
+                            "value": "Free Game",
+                            "inline": false
+                        },
+                        {
+                            "name": "Support us",
+                            "value": "[Join our discord server](https://discordapp.com/invite/wzF9qfC)\n[Get this bot](https://top.gg/bot/698117737175580692)",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Click on the name to go to the store",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_Sheltered_Unicube_S3_2560x1440-c24e2bf4318dc189a15e7f659c1377b0",
+                    "thumbnail": "https://cdn2.pu.nl/media/sven/epicgameslogo.png",
+                    "type": "rich",
+                    "url": "https://www.epicgames.com/store/en-US/p/sheltered",
+                    "video": "Embed.Empty"
+                }
+            ],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/789178794602528798/886267918109769778",
+            "message_id": 886267918109769778,
+            "message_ca": "2021-09-11 17:12:17.739000",
+            "channel_name": "darmówki",
+            "channel_id": 789178794602528798,
+            "author": "Free Games Bot#5261",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#2f3136",
+                    "title": "Sheltered",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Free Until",
+                            "value": "📅 September 16, 2021, 3 PM UTC",
+                            "inline": false
+                        },
+                        {
+                            "name": "State",
+                            "value": "Free Game",
+                            "inline": false
+                        },
+                        {
+                            "name": "Support us",
+                            "value": "[Join our discord server](https://discordapp.com/invite/wzF9qfC)\n[Get this bot](https://top.gg/bot/698117737175580692)",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Click on the name to go to the store",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_Sheltered_Unicube_S3_2560x1440-c24e2bf4318dc189a15e7f659c1377b0",
+                    "thumbnail": "https://cdn2.pu.nl/media/sven/epicgameslogo.png",
+                    "type": "rich",
+                    "url": "https://www.epicgames.com/store/en-US/p/sheltered",
+                    "video": "Embed.Empty"
+                }
+            ],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/789178794602528798/886267919372255302",
+            "message_id": 886267919372255302,
+            "message_ca": "2021-09-11 17:12:18.040000",
+            "channel_name": "darmówki",
+            "channel_id": 789178794602528798,
+            "author": "Free Games Bot#5261",
+            "content": "",
+            "attachments": [],
+            "embeds": [
+                {
+                    "author": {
+                        "name": "Embed.Empty",
+                        "url": "Embed.Empty",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "colour": "#2f3136",
+                    "title": "Nioh: The Complete Edition",
+                    "description": "Embed.Empty",
+                    "fields": [
+                        {
+                            "name": "Free Until",
+                            "value": "📅 September 16, 2021, 3 PM UTC",
+                            "inline": false
+                        },
+                        {
+                            "name": "State",
+                            "value": "Free Game",
+                            "inline": false
+                        },
+                        {
+                            "name": "Support us",
+                            "value": "[Join our discord server](https://discordapp.com/invite/wzF9qfC)\n[Get this bot](https://top.gg/bot/698117737175580692)",
+                            "inline": false
+                        }
+                    ],
+                    "footer": {
+                        "text": "Click on the name to go to the store",
+                        "icon_url": "Embed.Empty"
+                    },
+                    "image": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_NiohTheCompleteEdition_KOEITECMOGAMESCOLTD_S1_2560x1440-2a6124e6033545b37abd715282f8ba98",
+                    "thumbnail": "https://cdn2.pu.nl/media/sven/epicgameslogo.png",
+                    "type": "rich",
+                    "url": "https://www.epicgames.com/store/en-US/p/nioh-the-complete-edition",
+                    "video": "Embed.Empty"
+                }
+            ],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/789178794602528798/886267920215310406",
+            "message_id": 886267920215310406,
+            "message_ca": "2021-09-11 17:12:18.241000",
+            "channel_name": "darmówki",
+            "channel_id": 789178794602528798,
+            "author": "Free Games Bot#5261",
+            "content": "@everyone",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/786953727977455617/886272138678513734",
+            "message_id": 886272138678513734,
+            "message_ca": "2021-09-11 17:29:04.001000",
+            "channel_name": "ocr",
+            "channel_id": 786953727977455617,
+            "author": "Żukasz#3699",
+            "content": "迪克",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.send",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886315606285123694",
+            "message_id": 886315606285123694,
+            "message_ca": "2021-09-11 20:21:47.486000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "puszek degenerat",
+            "attachments": [],
+            "embeds": [],
+            "reactions": []
+        },
+        {
+            "action_type": "message.reaction.add",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886315606285123694",
+            "message_id": 886315606285123694,
+            "message_ca": "2021-09-11 20:21:47.486000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "puszek degenerat",
+            "attachments": [],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ],
+            "reaction.added": {
+                "count": 1,
+                "custom_emoji": true,
+                "emoji": "<:Wootler:806955177868787762>",
+                "me": false,
+                "user": {
+                    "name": "Przemekkk",
+                    "mention": "<@!183242057882664961>",
+                    "bot": false
+                }
+            }
+        },
+        {
+            "action_type": "message.edit",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886315606285123694",
+            "message_id": 886315606285123694,
+            "message_ca": {
+                "before": "2021-09-11 20:21:47.486000",
+                "after": "2021-09-11 20:23:10.699325"
+            },
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": {
+                "before": "puszek degenerat",
+                "after": "puszek degenerat jd"
+            },
+            "attachments": [],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ]
+        },
+        {
+            "action_type": "message.delete",
+            "jump_url": "https://discord.com/channels/476835326220828682/485194231665786888/886315606285123694",
+            "message_id": 886315606285123694,
+            "message_ca": "2021-09-11 20:21:47.486000",
+            "channel_name": "test",
+            "channel_id": 485194231665786888,
+            "author": "Przemekkk#5553",
+            "content": "puszek degenerat jd",
+            "attachments": [],
+            "embeds": [],
+            "reactions": [
+                {
+                    "count": 1,
+                    "custom_emoji": true,
+                    "emoji": "<:Wootler:806955177868787762>",
+                    "me": false
+                }
+            ]
+        }
+    ]
+}

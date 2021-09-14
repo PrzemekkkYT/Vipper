@@ -3,3 +3,4 @@ logs/
 pyvipper.code-workspace
 main copy.py
 main copy 2.py
+tests.db

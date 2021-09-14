@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from datetime import date
+from datetime import date, timezone
 import random, os, json
 
 from discord.flags import MemberCacheFlags
@@ -11,6 +11,9 @@ class Logs(commands.Cog):
         self.client = client
 
     saveconvobool = True
+
+    def utc_to_local(self, utc_dt):
+        return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
 
     #czy bot ma rejestrować wszystkie konwersacje na serwerze
     @commands.command()
@@ -108,7 +111,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         today = date.today()
-        message_ca = message.created_at.replace(hour=(message.created_at.hour+2))
+        message_ca = self.utc_to_local(message.created_at.utcnow())
         path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "send")
@@ -127,8 +130,8 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         today = date.today()
-        before_message_ca = before.created_at.replace(hour=(before.created_at.hour+2))
-        after_message_ea = after.edited_at.replace(hour=(after.edited_at.hour+2))
+        before_message_ca = self.utc_to_local(before.created_at.utcnow())
+        after_message_ea = self.utc_to_local(after.created_at.utcnow())
         path = "logs/chat/{0}-{1}.json".format(after.guild.id, today)
 
         message_info = self.json_message_info(after, after_message_ea, "edit")
@@ -149,7 +152,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         today = date.today()
-        message_ca = message.created_at.replace(hour=(message.created_at.hour+2))
+        message_ca = self.utc_to_local(message.created_at.utcnow())
         path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "delete")
@@ -168,7 +171,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
         today = date.today()
-        message_ca = reaction.message.created_at.replace(hour=(reaction.message.created_at.hour+2))
+        message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
         path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
 
@@ -199,7 +202,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
         today = date.today()
-        message_ca = reaction.message.created_at.replace(hour=(reaction.message.created_at.hour+2))
+        message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
         path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
 
@@ -228,7 +231,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_clear(self, message, reactions):
         today = date.today()
-        message_ca = message.created_at.replace(hour=(message.created_at.hour+2))
+        message_ca = self.utc_to_local(message.created_at.utcnow())
         message = message
         path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
 

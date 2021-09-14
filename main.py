@@ -1,10 +1,10 @@
 from inspect import Traceback
 import discord
 from discord.ext import commands
-from datetime import date
-import os, random
+from datetime import datetime, timezone
+import os, json
 
-intents= discord.Intents.default()
+intents = discord.Intents.default()
 intents.members = True
 
 client = commands.Bot(command_prefix = "v!", intents=intents)
@@ -15,6 +15,9 @@ initial_extensions = ['cogs.music']
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
+
+config_file = open("config.json", "r")
+config = json.load(config_file)
 
 @client.event
 async def on_ready():
@@ -100,4 +103,4 @@ async def sendembed(ctx, color : int, *, title):
     embed = discord.Embed(title=title, color=color)
     await ctx.send(embed=embed)
 
-client.run('NDgyNTU3MDEwNjgxMDA0MDMy.W4AWPA.UyWZ-d1-khlMbJz_Q-zpKRaFCdM')
+client.run(config["token"])

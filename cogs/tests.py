@@ -102,7 +102,7 @@ class Tests(commands.Cog):
     @commands.command()
     async def database(self, ctx):
         today = date.today()
-        message_ca = ctx.message.created_at.replace(hour=(ctx.message.created_at.hour+2))
+        message_ca = self.utc_to_local(ctx.message.created_at.utcnow())
     
         self.cursor.execute("create table if not exists '{0}-{1.month}-{1.year}' (db_id int, message_id int, message_ca text, channel_name text, channel_id int, author text, content text, att text)".format(ctx.guild.id, today))
 
@@ -128,7 +128,7 @@ class Tests(commands.Cog):
     @commands.command()
     async def jsonsave(self, ctx):
         today = date.today()
-        message_ca = ctx.message.created_at.replace(hour=(ctx.message.created_at.hour+2))
+        message_ca = self.utc_to_local(ctx.message.created_at.utcnow())
         path = "logs/chat/{0}-{1}.json".format(ctx.guild.id, today)
 
         attachments = []

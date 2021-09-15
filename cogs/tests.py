@@ -1,5 +1,5 @@
 import discord
-import sqlite3, traceback, json, os, requests
+import sqlite3, traceback, json, os, requests, io
 from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.message import Attachment
@@ -24,17 +24,22 @@ class Tests(commands.Cog):
     cursor = con.cursor()
 
     cmds = []
-    #cmds_categories = []
+    cmds_names = []
+    cmds_categories = []
 
     @commands.Cog.listener()
     async def on_ready(self):
         DiscordComponents(self.client)
         for command in self.client.commands:
             self.cmds.append(command)
-        #for i in range(len(self.cmds)):
-        #    if self.cmds[i].cog_name not in self.cmds_categories:
-        #        self.cmds_categories.append(self.cmds[i].cog_name)
-        #    else: pass
+        for i in range(len(self.cmds)):
+            if self.cmds[i].cog_name not in self.cmds_categories:
+                self.cmds_categories.append(self.cmds[i].cog_name)
+            else: pass
+        for i in range(len(self.cmds)):
+            if self.cmds[i].name not in self.cmds_names:
+                self.cmds_names.append(self.cmds[i].name)
+            else: pass
 
     @commands.command()
     async def buttonstest(self, ctx):
@@ -64,7 +69,7 @@ class Tests(commands.Cog):
             temp2 = {}
             temp3 = []
             for j in range(len(self.cmds)):
-                if self.cmds[j].cog_name == self.cmds_categories[i]:
+                if self.cmds[j].cog_name == self.cmds_categories[i] and self.cmds[j].hidden != True:
                     temp3.append(self.cmds[j].name)
                 temp2 = {'category': self.cmds_categories[i], 'cmds': temp3}
             categories.append(temp2)
@@ -185,6 +190,14 @@ class Tests(commands.Cog):
         for i in range(len(rj["freeGames"]["current"])):
             if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
                 await ctx.send(rj["freeGames"]["current"][-i]["price"]["totalPrice"]["fmtPrice"]["discountPrice"]+": "+rj["freeGames"]["current"][-i]["price"]["totalPrice"]["fmtPrice"]["discountPrice"+"zł"])
+
+    @commands.command()
+    async def sendfile(self, ctx, udate):
+        path_chat = 'logs/chat/C-{0}-{1}.json'.format(ctx.guild.id, udate)
+        print("==============================================================="+path_chat)
+        with open(path_chat, "rb") as f:
+            data = io.BytesIO(f.read())
+            await ctx.send(file=discord.File(data, filename=path_chat[9:]))
 
 def setup(client):
     client.add_cog(Tests(client))

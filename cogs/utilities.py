@@ -24,7 +24,7 @@ class Utilities(commands.Cog):
                 self.cmds_names.append(self.cmds[i].name)
             else: pass
 
-    @commands.command()
+    @commands.command(brief="Informacje o komendach i kategoriach", description="1. Umożliwia wyświetlenie najważniejszych informacji o:\n•komendach - Kategoria, Aliasy, Opis, Składania.\n•Kategoriach - dostępne komendy i ich krótki opis.\n2. Czytanie składni:\n•<> - argument obowiązkowy\n•[] - argument opcjonalny", usage="v!help [nazwa komendy/kategorii]")
     async def help(self, ctx, selection=None):
         try:
             selected = find(lambda s: s.name == selection, self.cmds)
@@ -49,7 +49,7 @@ class Utilities(commands.Cog):
                     temp2 = {}
                     temp3 = []
                     for j in range(len(self.cmds)):
-                        if self.cmds[j].cog_name == self.cmds_categories[i]:
+                        if self.cmds[j].cog_name == self.cmds_categories[i] and self.cmds[j].hidden != True:
                             temp3.append(self.cmds[j].name)
                         temp2 = {'category': self.cmds_categories[i], 'cmds': temp3}
                     categories.append(temp2)

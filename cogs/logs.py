@@ -16,7 +16,7 @@ class Logs(commands.Cog):
         return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
 
     #czy bot ma rejestrować wszystkie konwersacje na serwerze
-    @commands.command(brief="Ustawienie zapisywania dzienników serwera", description="Ustala czy wszystkie interakcje (konwersacje, kanały) na serwerze mają być zapisywane do dzienników (logów)", usage="v!activelogs")
+    @commands.command(brief="Ustawienie zapisywania logów serwera", description="Ustala czy wszystkie interakcje (konwersacje, kanały) na serwerze mają być zapisywane do logów", usage="v!activelogs")
     async def activelogs(self, ctx):
         global activelogsbool
         if self.activelogsbool:
@@ -26,7 +26,7 @@ class Logs(commands.Cog):
             self.activelogsbool = True
             await ctx.send("Rozpoczynam rejestrowanie konwersacji")
 
-    @commands.command()
+    @commands.command(brief="Pobranie logów serwera", description="Umożliwia pobranie logów serwera z określonego dnia", usage="v!downloadlog <data(RRRR-MM-DD)> [typ (chat / guild)]")
     async def downloadlog(self, ctx, udate, type=None):
         if ctx.guild:
             path_chat = 'logs/chat/C-{0}-{1}.json'.format(ctx.guild.id, udate)

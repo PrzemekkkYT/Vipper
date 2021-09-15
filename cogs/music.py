@@ -10,7 +10,7 @@ class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(brief="Łączy bota z czatem głosowym", description="Umożliwia połączenie bota z czatem głosowym w celu późniejszego odtwarzania muzyki", usage="v!connect")
     async def connect(self, ctx):
         if (ctx.author.voice):
             channel = ctx.message.author.voice.channel
@@ -19,7 +19,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Użytkownik nie jest połączony z żadnym kanałem głosowym")
 
-    @commands.command()
+    @commands.command(brief="Wyrzuca bota z kanału głosowego", desciption="Umożlwia wyrzucenie bota z kanału głosowego, jeżeli nie jest już potrzebny", usage="v!leave")
     async def leave(self, ctx):
         if (ctx.voice_client):
             await ctx.send("Opuszczono kanał głosowy")
@@ -51,7 +51,7 @@ class Music(commands.Cog):
                 embed = discord.Embed(title="Zakończono kolejkę", color=0x00AAFF)
                 await ctx.send(embed=embed)
 
-    @commands.command(brief="Służy do odtwarzania muzyki", description="Komenda v!play służy do odtwarzania muzyki z platformy YouTube używając linka do wideo jako argumentu.", usage="v!play (url)")
+    @commands.command(brief="Służy do odtwarzania muzyki", description="Służy do odtwarzania muzyki z platformy YouTube używając linka do wideo jako argumentu (nie każde wideo zadziała)", usage="v!play <youtube url>")
     async def play(self, ctx, url : str):
         vc = ctx.voice_client
         song = Music.song_search(self, url)
@@ -74,7 +74,7 @@ class Music(commands.Cog):
             errorembed = discord.Embed(title="Nie udało się użyć tego wideo, spróbuj z innym", color=0xFF8800)
             await ctx.send(embed=errorembed)
 
-    @commands.command()
+    @commands.command(brief="Zatrzymuje muzykę i czyści kolejkę", description="Zatrzymuję muzykę i czyści kolejkę, np. w celu stworzenia nowej kolejki do odtworzenia", usage="v!stop")
     async def stop(self, ctx):
         global playqueue
 
@@ -89,7 +89,7 @@ class Music(commands.Cog):
         embed = discord.Embed(title="Zakończono odtwarzanie muzyki oraz wyczyszczono kolejkę", color=0x00AAFF)
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(brief="Pomija aktualnie odtwarzaną muzyke", description="Pomija aktualnie odtwarzaną muzykę i odtwarza następną z kolejki, jeżeli takowa znajduje się w kolejce", usage="v!skip")
     async def skip(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -101,7 +101,7 @@ class Music(commands.Cog):
         vc.stop()
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(brief="Zatrzymuje aktualnie odtwarzaną muzykę", description="Zatrzymuje aktualnie odtwarzaną muzyke z możliwością wznowienia jej od tego samego momentu", usage="v!pause")
     async def pause(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -113,7 +113,7 @@ class Music(commands.Cog):
         embed = discord.Embed(title="Zatrzymano muzykę! Możesz wznowić komendą: v!resume", color=0x00AAFF)
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(brief="Wznawia zatrzymaną muzykę", description="Wznawia zatrzymaną muzykę od momentu w którym została zatrzymana", usage="v!resume")
     async def resume(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -125,7 +125,7 @@ class Music(commands.Cog):
         embed = discord.Embed(title="Wznowiono odtwarzanie muzyki", color=0x00AAFF)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['playqueue','musicqueue','vcqueue'])
+    @commands.command(aliases=['playqueue','musicqueue','vcqueue'], brief="Wyświetla kolejkę odtwarzania", description="Wyświetla 5 następnych piosenek do odtworzenia z kolejki", usage="v!queue")
     async def queue(self, ctx):
         try:
             if not playqueue or len(playqueue) < 1:

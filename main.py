@@ -29,7 +29,7 @@ async def test(ctx):
     await ctx.send("test")
 
 #ilość aktywnych użytkowników i ich atrybuty w konsoli
-@client.command()
+@client.command(hidden=True)
 async def active(ctx):
     amemb = ctx.guild.members
 
@@ -42,7 +42,7 @@ async def active(ctx):
         print("==============")
 
 #aktywność danego użytkownika
-@client.command()
+@client.command(hidden=True)
 async def act(ctx, member : discord.Member):
     for attrib in dir(member):
         print(attrib)
@@ -54,7 +54,7 @@ async def act(ctx, member : discord.Member):
     print(member.status)
 
 #informacje o serwerze
-@client.command()
+@client.command(hidden=True)
 async def serverinfo(ctx):
     svowner = ctx.guild.owner
 
@@ -64,7 +64,7 @@ async def serverinfo(ctx):
     await ctx.send("icon: {}".format(ctx.guild.icon_url))
 
 #sprawdzenie informacji o właścicielu serwera
-@client.command()
+@client.command(hidden=True)
 async def owtest(ctx):
     svowner = ctx.guild.owner
 
@@ -80,7 +80,7 @@ async def owner_find(ctx):
     await ctx.send(f'The owner of this server is: {guild_owner}')
 
 #test wiadomości zawierającej embed
-@client.command()
+@client.command(hidden=True)
 async def embedtest(ctx, title, desc, fdt, fdc):
     await ctx.send("embedtest")
     newembed = discord.Embed(title=title, description=desc, color=0x00FF33)

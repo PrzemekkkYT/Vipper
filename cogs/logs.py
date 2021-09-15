@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from datetime import date, timezone
-import random, os, json
+import random, os, json, io
 
 from discord.flags import MemberCacheFlags
 from discord.role import Role
@@ -10,44 +10,44 @@ class Logs(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    saveconvobool = True
+    activelogsbool = True
 
     def utc_to_local(self, utc_dt):
         return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
 
     #czy bot ma rejestrować wszystkie konwersacje na serwerze
-    @commands.command()
-    async def saveconvo(self, ctx):
-        global saveconvobool
-        if self.saveconvobool:
-            self.saveconvobool = False
+    @commands.command(brief="Ustawienie zapisywania dzienników serwera", description="Ustala czy wszystkie interakcje (konwersacje, kanały) na serwerze mają być zapisywane do dzienników (logów)", usage="v!activelogs")
+    async def activelogs(self, ctx):
+        global activelogsbool
+        if self.activelogsbool:
+            self.activelogsbool = False
             await ctx.send("Ta konwersacja nie będzie już rejestrowana")
         else:
-            self.saveconvobool = True
+            self.activelogsbool = True
             await ctx.send("Rozpoczynam rejestrowanie konwersacji")
 
     @commands.command()
     async def downloadlog(self, ctx, udate, type=None):
         if ctx.guild:
-            path_chat = 'logs/chat/{0}-{1}.txt'.format(ctx.guild.id, udate)
-            path_chat_embed = 'logs/chat/{0}-{1}-Embeds.txt'.format(ctx.guild.id, udate)
-            path_guild = 'logs/guild/{0}-{1}.txt'.format(ctx.guild.id, udate)
+            path_chat = 'logs/chat/C-{0}-{1}.json'.format(ctx.guild.id, udate)
+            path_guild = 'logs/guild/G-{0}-{1}.json'.format(ctx.guild.id, udate)
+            if os.path.exists(path_chat): filedata_chat = io.BytesIO(open(path_chat, "rb").read())
+            if os.path.exists(path_guild): filedata_guild = io.BytesIO(open(path_guild, "rb").read())
             if type is None:
-                await ctx.send(file=discord.File('test/vipper-avatar.png'))
                 if os.path.exists(path_chat):
-                    await ctx.send("Logi czatów:", file=discord.File(path_chat))
-                if os.path.exists(path_chat_embed):
-                    await ctx.send("Logi czatów (Embed):", file=discord.File(path_chat_embed))
-                if os.path.exists(path_guild):
-                    await ctx.send("Logi serwera:", file=discord.File(path_guild))
-            if type=="chat":
+                    await ctx.send(content=f"Logi czatów z dnia {udate}:", file=discord.File(filedata_chat, filename=path_chat[9:]))
+                elif os.path.exists(path_guild):
+                    await ctx.send(content=f"Logi serwera z dnia {udate}:", file=discord.File(filedata_guild, filename=path_chat[10:]))
+                else: await ctx.send(content=f"Nie udało się odnaleźć logów z dnia {udate}")
+            elif type=="chat":
                 if os.path.exists(path_chat):
-                    await ctx.send("Logi czatów:", file=discord.File(path_chat))
-                if os.path.exists(path_chat_embed):
-                    await ctx.send("Logi czatów (Embed):", file=discord.File(path_chat_embed))
-            if type=="guild":
+                    await ctx.send(f"Logi czatów z dnia {udate}:", file=discord.File(filedata_chat, filename=path_chat[9:]))
+                else: await ctx.send(f"Nie udało się odnaleźć logów z dnia {udate}")
+            elif type=="guild":
                 if os.path.exists(path_guild):
-                    await ctx.send("Logi serwera:", file=discord.File(path_guild))
+                    await ctx.send(f"Logi serwera z dnia {udate}:", file=discord.File(filedata_guild, filename=path_chat[10:]))
+                else: await ctx.send(f"Nie udało się odnaleźć logów z dnia {udate}")
+            else: await ctx.send("Nie ma takiej kategorii!")
 
     def json_message_info(self, message, message_ca, type):
         attachments = []
@@ -112,10 +112,10 @@ class Logs(commands.Cog):
     async def on_message(self, message):
         today = date.today()
         message_ca = self.utc_to_local(message.created_at.utcnow())
-        path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "send")
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = message.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -132,12 +132,12 @@ class Logs(commands.Cog):
         today = date.today()
         before_message_ca = self.utc_to_local(before.created_at.utcnow())
         after_message_ea = self.utc_to_local(after.created_at.utcnow())
-        path = "logs/chat/{0}-{1}.json".format(after.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(after.guild.id, today)
 
         message_info = self.json_message_info(after, after_message_ea, "edit")
         message_info["message_ca"] = {"before":str(before_message_ca), "after":str(after_message_ea)}
         message_info["content"] = {"before":str(before.content), "after":str(after.content)}
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = after.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -153,10 +153,10 @@ class Logs(commands.Cog):
     async def on_message_delete(self, message):
         today = date.today()
         message_ca = self.utc_to_local(message.created_at.utcnow())
-        path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "delete")
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = message.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -173,7 +173,7 @@ class Logs(commands.Cog):
         today = date.today()
         message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
-        path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "reaction.add")
         message_info["reaction.added"] = {
@@ -187,7 +187,7 @@ class Logs(commands.Cog):
                 "bot":user.bot
             }
         }
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = message.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -204,7 +204,7 @@ class Logs(commands.Cog):
         today = date.today()
         message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
-        path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "reaction.remove")
         message_info["reaction.removed"] = {
@@ -218,7 +218,7 @@ class Logs(commands.Cog):
                 "bot":user.bot
             }
         }
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = message.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -233,7 +233,7 @@ class Logs(commands.Cog):
         today = date.today()
         message_ca = self.utc_to_local(message.created_at.utcnow())
         message = message
-        path = "logs/chat/{0}-{1}.json".format(message.guild.id, today)
+        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "reaction.remove")
         reactions_removed = []
@@ -245,7 +245,7 @@ class Logs(commands.Cog):
             "me": reaction.me
         })
         message_info["reactions.removed"] = reactions_removed
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = message.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:
@@ -259,7 +259,7 @@ class Logs(commands.Cog):
     async def on_guild_channel_create(self, channel):
         today = date.today()
         channel_ca = channel.created_at.replace(hour=(channel.created_at.hour+2))
-        path = "logs/guild/{0}-{1}.json".format(channel.guild.id, today)
+        path = "logs/guild/G-{0}-{1}.json".format(channel.guild.id, today)
 
         changed_roles = []
         for ch_role in channel.changed_roles:
@@ -291,7 +291,7 @@ class Logs(commands.Cog):
             "changed_roles":changed_roles
         }
 
-        if self.saveconvobool:
+        if self.activelogsbool:
             guild = channel.guild
             if guild:
                 if not os.path.exists(path) or os.path.getsize(path)<=0:

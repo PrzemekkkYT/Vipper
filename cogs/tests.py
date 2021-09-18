@@ -1,5 +1,5 @@
 import discord
-import sqlite3, traceback, json, os, requests, io
+import sqlite3, traceback, json, os, requests, io, calendar, useful, threading
 from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.message import Attachment
@@ -189,7 +189,7 @@ class Tests(commands.Cog):
 
         for i in range(len(rj["freeGames"]["current"])):
             if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
-                await ctx.send(rj["freeGames"]["current"][-i]["price"]["totalPrice"]["fmtPrice"]["discountPrice"]+": "+rj["freeGames"]["current"][-i]["price"]["totalPrice"]["fmtPrice"]["discountPrice"+"zł"])
+                await ctx.send(rj["freeGames"]["current"][-i]["title"]+": "+rj["freeGames"]["current"][-i]["price"]["totalPrice"]["fmtPrice"]["discountPrice"])
 
     @commands.command()
     async def sendfile(self, ctx, udate):
@@ -198,6 +198,35 @@ class Tests(commands.Cog):
         with open(path_chat, "rb") as f:
             data = io.BytesIO(f.read())
             await ctx.send(file=discord.File(data, filename=path_chat[9:]))
+
+    @commands.command()
+    async def currentfg(self, ctx):
+        rj = self.fg_response.json()
+        current = []
+        for i in range(len(rj["freeGames"]["current"])):
+            if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
+                current.append(rj["freeGames"]["current"][-i])
+        
+        for fg in current:
+            free_until = fg["price"]["lineOffers"][0]["appliedRules"][0]["endDate"]
+            embed = discord.Embed(title=fg["title"], url=("https://www.epicgames.com/store/pl/p/"+fg["title"].replace(" ", "-").lower()))
+            embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
+            embed.add_field(name="Darmowa od", value=useful.better_date(fg["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["startDate"]), inline=False)
+            embed.add_field(name="Darmowa do", value=useful.better_date(free_until), inline=False)
+            embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
+            embed.set_image(url=fg["keyImages"][4]["url"])
+            embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
+            embed.timestamp = datetime.utcnow()
+            await ctx.send(embed=embed)
+        self.checkTime()
+
+    def checkTime(self):
+        t1 = threading.Timer(1, self.checkTime).start()
+        now = datetime.now()
+
+        current_time = now.strftime("%H:%M:%S")
+        if current_time=="23:43:00":
+            print("23:43")
 
 def setup(client):
     client.add_cog(Tests(client))

@@ -21,7 +21,8 @@ config = json.load(config_file)
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.idle, activity=discord.Game("TESTY"))
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="dlaczego Tede kurwą jest"))
+    #await client.change_presence(status=discord.Status.idle, activity=discord.Game("dlaczego Tede kurwą jest"))
     print("Bot is ready")
 
 @client.command()

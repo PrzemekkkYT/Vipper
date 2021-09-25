@@ -1,11 +1,14 @@
+from cogs.music import Music
 import discord
-import sqlite3, traceback, json, os, requests, io, calendar, useful, threading
+import sqlite3, json, os, requests, io, useful, threading
+from discord.utils import find
+from discord.mentions import AllowedMentions
 from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.message import Attachment
 from discord_components import *
 from discord.abc import Messageable
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 class Tests(commands.Cog):
     def __init__(self, client):
@@ -40,6 +43,7 @@ class Tests(commands.Cog):
             if self.cmds[i].name not in self.cmds_names:
                 self.cmds_names.append(self.cmds[i].name)
             else: pass
+        self.checkTime()
 
     @commands.command()
     async def buttonstest(self, ctx):
@@ -200,13 +204,13 @@ class Tests(commands.Cog):
             await ctx.send(file=discord.File(data, filename=path_chat[9:]))
 
     @commands.command()
-    async def currentfg(self, ctx):
+    async def currentfg(self, ctx : commands.Context):
         rj = self.fg_response.json()
         current = []
         for i in range(len(rj["freeGames"]["current"])):
             if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
                 current.append(rj["freeGames"]["current"][-i])
-        
+
         for fg in current:
             free_until = fg["price"]["lineOffers"][0]["appliedRules"][0]["endDate"]
             embed = discord.Embed(title=fg["title"], url=("https://www.epicgames.com/store/pl/p/"+fg["title"].replace(" ", "-").lower()))
@@ -214,19 +218,74 @@ class Tests(commands.Cog):
             embed.add_field(name="Darmowa od", value=useful.better_date(fg["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["startDate"]), inline=False)
             embed.add_field(name="Darmowa do", value=useful.better_date(free_until), inline=False)
             embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
-            embed.set_image(url=fg["keyImages"][4]["url"])
-            embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
-            embed.timestamp = datetime.utcnow()
+
+            for image in fg["keyImages"]:
+                if image["type"] == "OfferImageWide":
+                    embed.set_image(url=image["url"].replace(" ","%20"))
+
+            embed.set_footoer(text="Kliknij na nazwę aby przejść do sklepu")
+            embed.timestamp = datetime.utcnw()
             await ctx.send(embed=embed)
-        self.checkTime()
+    
+    @commands.command()
+    async def buttonscalc(self, ctx):
+        m = await ctx.send("sadiugfasdas",
+            components=[
+                [Button(style=1, label="7"),Button(style=1, label="8"),Button(style=1, label="9"),Button(style=1, label="X")],
+                [Button(style=1, label="4"),Button(style=1, label="5"),Button(style=1, label="6"),Button(style=1, label="-")],
+                [Button(style=1, label="1"),Button(style=1, label="2"),Button(style=1, label="3"),Button(style=1, label="+")],
+                [Button(style=1, label="00"),Button(style=1, label="0"),Button(style=1, label=","),Button(style=1, label="=")]
+            ]
+        )
+
+        while m.created_at < (datetime.utcnow() + timedelta(minutes=5)):
+            res = await self.client.wait_for("button_click")
+            if res.channel == ctx.message.channel:
+                #for attrib in dir(res.responded):
+                #    print(attrib)
+                await m.edit(res.component.label)
+
+    @commands.command()
+    async def auditlog(self, ctx):
+        entries = await ctx.guild.audit_logs(limit=None, user=ctx.guild.owner).flatten()
+        for entry in entries:
+            with open("entries.txt", "a+") as f:
+                f.write(str(entry)+"\n")
 
     def checkTime(self):
-        t1 = threading.Timer(1, self.checkTime).start()
+        t1 = threading.Timer(1, self.checkTime)
+        t1.daemon = True
+        t1.start()
         now = datetime.now()
 
         current_time = now.strftime("%H:%M:%S")
-        if current_time=="23:43:00":
-            print("23:43")
+        if current_time=="16:52:20":
+            print("16:52:20")
+
+    @commands.command()
+    async def testcfg(self, ctx):
+        embed = discord.Embed(title="test")
+        embed.set_image(url="https://cdn1.epicgames.com/epic/offer/TheEscapists_Newsfeed Post-2560x1440-587a8d844cab1246b3253f2f98fab8a7.jpg".replace(" ","%20"))
+        await ctx.send(embed=embed)
+
+        rj = self.fg_response.json()
+        crnt = rj["freeGames"]["current"][0]
+        for image in crnt["keyImages"]:
+            if image["type"] == "OfferImageWide":
+                print(image["url"])
+
+    @commands.command()
+    async def findvc(self, ctx):
+        vcs = []
+        for guild in self.client.guilds:
+            print("guild.id:",guild.id)
+            vcs.append(find(lambda v: len(v.members)>0, guild.voice_channels))
+        for vc in vcs:
+            if vc:
+                await vc.connect()
+                print("połączono z",vc.guild.id)
+                await Music.play(self, ctx, "https://www.youtube.com/watch?v=_o9mZ_DVTKA")
+            else: print("brak użytkowników na kanałach głosowych")
 
 def setup(client):
     client.add_cog(Tests(client))

@@ -1,5 +1,7 @@
 """Konwertery jednostek w celu lekkiego ułatwienia pracy :)"""
 
+from datetime import datetime, timezone
+
 month_pl = {
     "01": "stycznia",
     "02": "lutego",
@@ -19,5 +21,8 @@ def better_date(date):
     datetm = date.split("T")
     date = datetm[0].split("-")
     time = datetm[1].split(":")
-    returndate = (date[2]+" "+month_pl[date[1]]+" "+date[0]+",  "+time[0]+":"+time[1])
+    returndate = (date[2]+" "+month_pl[date[1]]+" "+date[0]+",  "+str(int(time[0])+2)+":"+time[1])
     return returndate
+
+def utc_to_local(utc_dt):
+        return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)

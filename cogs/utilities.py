@@ -1,7 +1,9 @@
 import discord
+from discord.mentions import AllowedMentions
 from discord.ext import commands
 from discord.utils import find
-import traceback
+import traceback, useful, requests, sqlite3
+from datetime import date, datetime
 
 class Utilities(commands.Cog):
     def __init__(self, client):
@@ -10,6 +12,16 @@ class Utilities(commands.Cog):
     cmds = []
     cmds_names = []
     cmds_categories = []
+
+    fg_request_url = "https://free-epic-games.p.rapidapi.com/free"
+    fg_request_headers = {
+        'x-rapidapi-host': "free-epic-games.p.rapidapi.com",
+        'x-rapidapi-key': "4a35b378bemsh2dad8e6bec18de1p119880jsne3276f501ab7"
+    }
+    fg_response = requests.request("GET", fg_request_url, headers=fg_request_headers)
+
+    con = sqlite3.connect('tests.db')
+    cursor = con.cursor()
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -86,6 +98,38 @@ class Utilities(commands.Cog):
             print("===========! HELP TRACEBACK !===========")
             traceback.print_tb(inst.__traceback__)
             print("===========! HELP TRACEBACK !===========")
+
+    @commands.command()
+    @commands.has_role("Król")
+    async def postcurrentfg(self, ctx : commands.Context):
+        rj = self.fg_response.json()
+        current = []
+        for i in range(len(rj["freeGames"]["current"])):
+            if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
+                current.append(rj["freeGames"]["current"][-i])
+
+        for fg in current:
+            free_until = fg["price"]["lineOffers"][0]["appliedRules"][0]["endDate"]
+            embed = discord.Embed(title=fg["title"], url=("https://www.epicgames.com/store/pl/p/"+fg["title"].replace(" ", "-").lower()))
+            embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
+            embed.add_field(name="Darmowa od", value=useful.better_date(fg["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["startDate"]), inline=False)
+            embed.add_field(name="Darmowa do", value=useful.better_date(free_until), inline=False)
+            embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
+
+            for image in fg["keyImages"]:
+                if image["type"] == "OfferImageWide":
+                    embed.set_image(url=image["url"].replace(" ","%20"))
+
+            embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
+            embed.timestamp = datetime.utcnow()
+
+            self.cursor.execute("select * from free_games_channel")
+            guilds_ids = self.cursor.fetchall()
+            for gid in guilds_ids:
+                print(gid[0])
+                guild = self.client.get_guild(gid[0])
+                channel = guild.get_channel(gid[1])
+                await channel.send(content=ctx.message.guild.default_role, embed=embed, allowed_mentions=AllowedMentions(everyone=True))
 
 def setup(client):
     client.add_cog(Utilities(client))

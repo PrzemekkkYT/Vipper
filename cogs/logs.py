@@ -1,7 +1,8 @@
+import datetime
 import discord
 from discord.ext import commands
 from datetime import date, timezone
-import random, os, json, io
+import os, json, io, useful
 
 from discord.flags import MemberCacheFlags
 from discord.role import Role
@@ -11,9 +12,6 @@ class Logs(commands.Cog):
         self.client = client
 
     activelogsbool = True
-
-    def utc_to_local(self, utc_dt):
-        return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
 
     #czy bot ma rejestrować wszystkie konwersacje na serwerze
     @commands.command(brief="Ustawienie zapisywania logów serwera", description="Ustala czy wszystkie interakcje (konwersacje, kanały) na serwerze mają być zapisywane do logów", usage="v!activelogs")
@@ -111,7 +109,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         today = date.today()
-        message_ca = self.utc_to_local(message.created_at.utcnow())
+        message_ca = useful.utc_to_local(message.created_at.utcnow())
         path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "send")
@@ -130,8 +128,8 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         today = date.today()
-        before_message_ca = self.utc_to_local(before.created_at.utcnow())
-        after_message_ea = self.utc_to_local(after.created_at.utcnow())
+        before_message_ca = useful.utc_to_local(before.created_at.utcnow())
+        after_message_ea = useful.utc_to_local(after.created_at.utcnow())
         path = "logs/chat/C-{0}-{1}.json".format(after.guild.id, today)
 
         message_info = self.json_message_info(after, after_message_ea, "edit")
@@ -152,7 +150,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         today = date.today()
-        message_ca = self.utc_to_local(message.created_at.utcnow())
+        message_ca = useful.utc_to_local(message.created_at.utcnow())
         path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
         message_info = self.json_message_info(message, message_ca, "delete")
@@ -171,7 +169,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
         today = date.today()
-        message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
+        message_ca = useful.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
         path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
@@ -202,7 +200,7 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
         today = date.today()
-        message_ca = self.utc_to_local(reaction.message.created_at.utcnow())
+        message_ca = useful.utc_to_local(reaction.message.created_at.utcnow())
         message = reaction.message
         path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
@@ -228,10 +226,11 @@ class Logs(commands.Cog):
                     file_data["logs"].append(message_info)
                     json_file.seek(0)
                     json.dump(file_data, json_file, indent=4, ensure_ascii=False)
+
     @commands.Cog.listener()
     async def on_reaction_clear(self, message, reactions):
         today = date.today()
-        message_ca = self.utc_to_local(message.created_at.utcnow())
+        message_ca = useful.utc_to_local(message.created_at.utcnow())
         message = message
         path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
@@ -255,6 +254,7 @@ class Logs(commands.Cog):
                     file_data["logs"].append(message_info)
                     json_file.seek(0)
                     json.dump(file_data, json_file, indent=4, ensure_ascii=False)
+
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel):
         today = date.today()
@@ -270,8 +270,6 @@ class Logs(commands.Cog):
                 "position":str(ch_role.position),
                 "color":str(ch_role.color)
             })
-
-        print("============================================ OVERWRITE PRINT TEST BYQ",list(channel.overwrites))
         
         overwrites = []
         for overwrite in channel.overwrites:
@@ -284,6 +282,52 @@ class Logs(commands.Cog):
             "name":str(channel.name),
             "mention":str(channel.mention),
             "created_at":str(channel_ca),
+            "category":str(channel.category),
+            "position":str(channel.position),
+            "overwrites":overwrites,
+            "permissions_synced":str(channel.permissions_synced),
+            "changed_roles":changed_roles
+        }
+
+        if self.activelogsbool:
+            guild = channel.guild
+            if guild:
+                if not os.path.exists(path) or os.path.getsize(path)<=0:
+                    with open(path, 'a', encoding="utf-8") as json_file: json.dump({"logs":[]}, json_file, indent=4)
+                with open(path, 'r+', encoding="utf-8") as json_file:
+                    file_data = json.load(json_file)
+                    file_data["logs"].append(channel_info)
+                    json_file.seek(0)
+                    json.dump(file_data, json_file, indent=4, ensure_ascii=False)
+    
+    @commands.Cog.listener()
+    async def on_guild_channel_delete(self, channel):
+        today = date.today()
+        channel_ca = channel.created_at.replace(hour=(channel.created_at.hour+2))
+        path = "logs/guild/G-{0}-{1}.json".format(channel.guild.id, today)
+
+        changed_roles = []
+        for ch_role in channel.changed_roles:
+            changed_roles.append({
+                "id":str(ch_role.id),
+                "name":str(ch_role.name),
+                "mention":str(ch_role.mention),
+                "position":str(ch_role.position),
+                "color":str(ch_role.color)
+            })
+        
+        overwrites = []
+        for overwrite in channel.overwrites:
+            if isinstance(overwrite, discord.role.Role):
+                overwrites.append({"role":str(overwrite)})
+            else:
+                overwrites.append({"member":str(overwrite)})
+
+        channel_info = {
+            "name":str(channel.name),
+            "mention":str(channel.mention),
+            "created_at":str(channel_ca),
+            "deleted_at":str(datetime.datetime.now()),
             "category":str(channel.category),
             "position":str(channel.position),
             "overwrites":overwrites,

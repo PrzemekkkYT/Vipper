@@ -1,6 +1,6 @@
 from inspect import Traceback
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from datetime import datetime, timezone
 import os, json
 
@@ -22,8 +22,22 @@ config = json.load(config_file)
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="dlaczego Tede kurwą jest"))
+    presenceLoop.start()
     #await client.change_presence(status=discord.Status.idle, activity=discord.Game("dlaczego Tede kurwą jest"))
     print("Bot is ready")
+
+@tasks.loop(seconds=5) 
+async def presenceLoop():
+    vcs = []
+    membs = 0
+    for guild in client.guilds:
+        if guild.voice_client:
+            vcs.append(guild.voice_client)
+    if len(vcs) >= 1:
+        for vc in vcs:
+            membs += len(vc.channel.members)-1
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name=f"{membs} słucha na {len(vcs)} serwerach"))
+    else: await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="dlaczego Tede kurwą jest"))
 
 @client.command()
 async def test(ctx):

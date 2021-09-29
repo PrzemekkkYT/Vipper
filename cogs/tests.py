@@ -44,7 +44,7 @@ class Tests(commands.Cog):
                 self.cmds_names.append(self.cmds[i].name)
             else: pass
         self.checkTime()
-
+        
     @commands.command()
     async def buttonstest(self, ctx):
 

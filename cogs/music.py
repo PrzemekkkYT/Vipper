@@ -16,8 +16,10 @@ class Music(commands.Cog):
             channel = ctx.message.author.voice.channel
             await channel.connect()
             await ctx.send("Połączono z kanałem głosowym "+channel.name)
+            return True
         else:
             await ctx.send("Użytkownik nie jest połączony z żadnym kanałem głosowym")
+            return False
 
     @commands.command(brief="Wyrzuca bota z kanału głosowego", desciption="Umożlwia wyrzucenie bota z kanału głosowego, jeżeli nie jest już potrzebny", usage="v!leave")
     async def leave(self, ctx):
@@ -52,27 +54,32 @@ class Music(commands.Cog):
                 await ctx.send(embed=embed)
 
     @commands.command(brief="Służy do odtwarzania muzyki", description="Służy do odtwarzania muzyki z platformy YouTube używając linka do wideo jako argumentu (nie każde wideo zadziała)", usage="v!play <youtube url>")
-    async def play(self, ctx, url : str):
-        vc = ctx.voice_client
-        song = Music.song_search(self, url)
-        playqueue.append(song)
-
-        if vc:
-            await vc.move_to(ctx.message.author.voice.channel)
-        else:
-            await Music.connect(self, ctx)
-            vc = ctx.voice_client
-
-        if playqueue[-1] is not None:
-            if not vc.is_playing():
-                vc.play(discord.FFmpegPCMAudio(playqueue[0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, ctx), self.client.loop))
-                vc.is_playing()
+    async def play(self, ctx, url=None):
+        if url is not None:
+            if ctx.voice_client and ctx.message.author.voice:
+                vc = ctx.voice_client
+                await vc.move_to(ctx.message.author.voice.channel)
             else:
-                queueembed = discord.Embed(title=("Dodano \""+playqueue[-1]['title']+"\" do kolejki"), color=0x00AAFF)
-                await ctx.send(embed=queueembed)
-        else:
-            errorembed = discord.Embed(title="Nie udało się użyć tego wideo, spróbuj z innym", color=0xFF8800)
-            await ctx.send(embed=errorembed)
+                connection = await Music.connect(self, ctx)
+                if connection is not False:
+                    vc = ctx.voice_client
+                    print("CONNECTION: ",connection)
+                else: return
+            
+            song = Music.song_search(self, url)
+            playqueue.append(song)
+
+            if playqueue[-1] is not None:
+                if not vc.is_playing():
+                    vc.play(discord.FFmpegPCMAudio(playqueue[0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, ctx), self.client.loop))
+                    vc.is_playing()
+                else:
+                    queueembed = discord.Embed(title=("Dodano \""+playqueue[-1]['title']+"\" do kolejki"), color=0x00AAFF)
+                    await ctx.send(embed=queueembed)
+            else:
+                errorembed = discord.Embed(title="Nie udało się użyć tego wideo, spróbuj z innym", color=0xFF8800)
+                await ctx.send(embed=errorembed)
+        else: await ctx.send("Nie podano linku")
 
     @commands.command(brief="Zatrzymuje muzykę i czyści kolejkę", description="Zatrzymuję muzykę i czyści kolejkę, np. w celu stworzenia nowej kolejki do odtworzenia", usage="v!stop")
     async def stop(self, ctx):

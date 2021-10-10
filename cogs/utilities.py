@@ -99,9 +99,7 @@ class Utilities(commands.Cog):
             traceback.print_tb(inst.__traceback__)
             print("===========! HELP TRACEBACK !===========")
 
-    @commands.command()
-    @commands.has_role("Król")
-    async def postcurrentfg(self, ctx : commands.Context):
+    async def postcurrentfg(self, client):
         rj = self.fg_response.json()
         current = []
         for i in range(len(rj["freeGames"]["current"])):
@@ -111,7 +109,7 @@ class Utilities(commands.Cog):
         for fg in current:
             free_until = fg["price"]["lineOffers"][0]["appliedRules"][0]["endDate"]
             embed = discord.Embed(title=fg["title"], url=("https://www.epicgames.com/store/pl/p/"+fg["title"].replace(" ", "-").lower()))
-            embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
+            embed.set_author(name="Darmowa giera tygodnia:", icon_url=client.user.avatar_url)
             embed.add_field(name="Darmowa od", value=useful.better_date(fg["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["startDate"]), inline=False)
             embed.add_field(name="Darmowa do", value=useful.better_date(free_until), inline=False)
             embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
@@ -127,9 +125,9 @@ class Utilities(commands.Cog):
             guilds_ids = self.cursor.fetchall()
             for gid in guilds_ids:
                 print(gid[0])
-                guild = self.client.get_guild(gid[0])
+                guild = client.get_guild(gid[0])
                 channel = guild.get_channel(gid[1])
-                await channel.send(content=ctx.message.guild.default_role, embed=embed, allowed_mentions=AllowedMentions(everyone=True))
+                await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
 
 def setup(client):
     client.add_cog(Utilities(client))

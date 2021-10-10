@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 from datetime import datetime, timezone
 import os, json
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
 
 client = commands.Bot(command_prefix = "v!", intents=intents)
@@ -117,5 +117,9 @@ async def serverinfoembed(ctx):
 async def sendembed(ctx, color : int, *, title):
     embed = discord.Embed(title=title, color=color)
     await ctx.send(embed=embed)
+    
+@commands.command()
+async def getavatar(self, ctx, memid):
+    await ctx.send(ctx.guild.get_member(int(memid)).avatar_url)
 
 client.run(config["token"])

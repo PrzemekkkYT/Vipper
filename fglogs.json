@@ -1,0 +1,1476 @@
+{
+    "logs": [
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        },
+        {
+            "title": "Europa Universalis IV",
+            "id": "45b82cb4454b40439b61ba126adfabec",
+            "namespace": "80d3aeb1d7c3434981e0bcbc47700a83",
+            "description": "Lead any nation from Renaissance to Revolution in a complex simulation of the early modern world. Master the art of war, diplomacy and trade to shape and change your nation’s history!",
+            "effectiveDate": "2021-09-30T15:00:00.000Z",
+            "offerType": "BASE_GAME",
+            "expiryDate": null,
+            "status": "ACTIVE",
+            "isCodeRedemptionOnly": false,
+            "keyImages": [
+                {
+                    "type": "CodeRedemption_340x440",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "DieselStoreFrontWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "OfferImageTall",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S2_1200x1600-c6740a476aa44943d38991468a85950d"
+                },
+                {
+                    "type": "OfferImageWide",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S3_2560x1440-aa3002ec221d43dcd7e49f5458e74766"
+                },
+                {
+                    "type": "Thumbnail",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_S4_1200x1600-381fe4bad2c0951566b465ab1a46726d"
+                },
+                {
+                    "type": "ProductLogo",
+                    "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_EuropaUniversalisIV_ParadoxDevelopmentStudioParadoxTinto_IC1_400x400-f2d3c3bdd328fd3552a4fea1422315db"
+                }
+            ],
+            "seller": {
+                "id": "o-tjvfg6rejs6h86qa7k9aa64rrgbxxb",
+                "name": "Paradox Interactive"
+            },
+            "productSlug": "europa-universalis-iv",
+            "urlSlug": "europa-universalis-iv",
+            "url": null,
+            "items": [
+                {
+                    "id": "e108073b4d0b43db8a169594f74f6db9",
+                    "namespace": "80d3aeb1d7c3434981e0bcbc47700a83"
+                }
+            ],
+            "customAttributes": [
+                {
+                    "key": "com.epicgames.app.blacklist",
+                    "value": "[]"
+                },
+                {
+                    "key": "publisherName",
+                    "value": "Paradox Development Studio  "
+                },
+                {
+                    "key": "developerName",
+                    "value": "Paradox Development Studio / Paradox Tinto  "
+                },
+                {
+                    "key": "com.epicgames.app.productSlug",
+                    "value": "europa-universalis-iv"
+                }
+            ],
+            "categories": [
+                {
+                    "path": "freegames"
+                },
+                {
+                    "path": "games"
+                },
+                {
+                    "path": "games/edition/base"
+                },
+                {
+                    "path": "games/edition"
+                },
+                {
+                    "path": "applications"
+                }
+            ],
+            "tags": [
+                {
+                    "id": "1393"
+                },
+                {
+                    "id": "1203"
+                },
+                {
+                    "id": "17779"
+                },
+                {
+                    "id": "1370"
+                },
+                {
+                    "id": "1115"
+                },
+                {
+                    "id": "9547"
+                },
+                {
+                    "id": "10719"
+                }
+            ],
+            "catalogNs": {
+                "mappings": [
+                    {
+                        "pageSlug": "europa-universalis-iv",
+                        "pageType": "productHome"
+                    }
+                ]
+            },
+            "offerMappings": [],
+            "price": {
+                "totalPrice": {
+                    "discountPrice": 0,
+                    "originalPrice": 3999,
+                    "voucherDiscount": 0,
+                    "discount": 3999,
+                    "currencyCode": "USD",
+                    "currencyInfo": {
+                        "decimals": 2
+                    },
+                    "fmtPrice": {
+                        "originalPrice": "$39.99",
+                        "discountPrice": "0",
+                        "intermediatePrice": "0"
+                    }
+                },
+                "lineOffers": [
+                    {
+                        "appliedRules": [
+                            {
+                                "id": "2d52b222c0484dae9e63946b8b928386",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "promotions": {
+                "promotionalOffers": [
+                    {
+                        "promotionalOffers": [
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 0
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            },
+                            {
+                                "startDate": "2021-09-30T15:00:00.000Z",
+                                "endDate": "2021-10-07T15:00:00.000Z",
+                                "discountSetting": {
+                                    "discountType": "PERCENTAGE",
+                                    "discountPercentage": 50
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "upcomingPromotionalOffers": []
+            }
+        }
+    ]
+}

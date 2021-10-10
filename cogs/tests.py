@@ -1,6 +1,6 @@
-from cogs.music import Music
+from cogs.music import Music, FFMPEG_OPTIONS
 import discord
-import sqlite3, json, os, requests, io, useful, threading
+import sqlite3, json, os, requests, io, useful, threading, asyncio
 from discord.utils import find
 from discord.mentions import AllowedMentions
 from discord.ext import commands
@@ -223,8 +223,8 @@ class Tests(commands.Cog):
                 if image["type"] == "OfferImageWide":
                     embed.set_image(url=image["url"].replace(" ","%20"))
 
-            embed.set_footoer(text="Kliknij na nazwę aby przejść do sklepu")
-            embed.timestamp = datetime.utcnw()
+            embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
+            embed.timestamp = datetime.utcnow()
             await ctx.send(embed=embed)
     
     @commands.command()
@@ -286,6 +286,19 @@ class Tests(commands.Cog):
                 print("połączono z",vc.guild.id)
                 await Music.play(self, ctx, "https://www.youtube.com/watch?v=_o9mZ_DVTKA")
             else: print("brak użytkowników na kanałach głosowych")
+        
+    @commands.command()
+    async def queuelen(self, ctx):
+        from cogs.music import playcontext
+        if playcontext:
+            if self.client.voice_clients:
+                song = Music.song_search(Music, "https://www.youtube.com/watch?v=_o9mZ_DVTKA")
+                for voiceclient in self.client.voice_clients:
+                    if voiceclient.is_playing():
+                        voiceclient.stop()
+                        voiceclient.play(discord.FFmpegPCMAudio(song['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(Music, voiceclient, playcontext[voiceclient.guild.id]), voiceclient.loop))
+                    else:
+                        voiceclient.play(discord.FFmpegPCMAudio(song['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(Music, voiceclient, playcontext[voiceclient.guild.id]), voiceclient.loop))
 
 def setup(client):
     client.add_cog(Tests(client))

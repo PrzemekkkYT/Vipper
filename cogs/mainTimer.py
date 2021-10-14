@@ -18,7 +18,11 @@ class MainTimer(commands.Cog):
     }
     fg_response = requests.request("GET", fg_request_url, headers=fg_request_headers)
     
-    initBarkaB = False
+    initEvents = {
+        "barka": False,
+        "hejnal": False,
+        "freegames": False
+    }
         
     @commands.Cog.listener()
     async def on_ready(self):
@@ -31,18 +35,31 @@ class MainTimer(commands.Cog):
         now = datetime.datetime.now()
 
         current_time = now.strftime("%H:%M:%S")
-        if current_time=="21:37:00" or self.initBarkaB:
+        if current_time=="21:37:00" or self.initEvents["barka"]:
             from cogs.music import playqueue
-            print("godzina")
-            self.initBarkaB = False
+            print("Godzina Papieska")
+            self.initEvents["barka"] = False
             asyncio.run_coroutine_threadsafe(Music.interruptListening(self, commands.Context, "https://www.youtube.com/watch?v=_o9mZ_DVTKA", playqueue), self.client.loop)
-        elif current_time=="19:00:00" and datetime.datetime.weekday==3:
+        elif current_time=="12:00:00" or self.initEvents["hejnal"]:
+            from cogs.music import playqueue
+            print("Hejnał Mariacki")
+            self.initEvents["hejnal"] = False
+            asyncio.run_coroutine_threadsafe(Music.interruptListening(self, commands.Context, "https://www.youtube.com/watch?v=WVQbxXvyG7A", playqueue), self.client.loop)
+        elif (current_time=="17:00:00" and datetime.datetime.today().weekday()==3) or (current_time=="17:30:00" and datetime.datetime.today().weekday()==3) (current_time=="18:00:00" and datetime.datetime.today().weekday()==3) or (self.initEvents["freegames"] and datetime.datetime.today().weekday()==3):
+            self.initEvents["freegames"] = False
             self.fg_response = requests.request("GET", self.fg_request_url, headers=self.fg_request_headers)
             asyncio.run_coroutine_threadsafe(Utilities.postcurrentfg(Utilities, self.client), self.client.loop)
             
     @commands.command()
-    async def initBarka(self, ctx):
-        self.initBarkaB = True
+    async def initevent(self, ctx, event:str):
+        if event.lower()=="barka":
+            self.initEvents["barka"] = True
+        elif event.lower()=="hejnal":
+            self.initEvents["hejnal"] = True
+        elif event.lower()=="freegames":
+            self.initEvents["freegames"] = True
+        else:
+            ctx.send("Nie znaleziono podanego eventu")
         
 def setup(client):
     client.add_cog(MainTimer(client))

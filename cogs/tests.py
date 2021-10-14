@@ -300,5 +300,21 @@ class Tests(commands.Cog):
                     else:
                         voiceclient.play(discord.FFmpegPCMAudio(song['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(Music, voiceclient, playcontext[voiceclient.guild.id]), voiceclient.loop))
 
+    @commands.command()
+    async def getallmembers(self, ctx):
+        with open("members.txt", "a+", encoding="utf-8") as f:
+            for member in ctx.guild.members:
+                f.write(f"{member.name}: {member.id}\n")
+        
+    @commands.command()
+    async def waitfortest(self, ctx):
+        await ctx.send("Dodaj dowolną reakcję")
+        reaction, user = await ctx.bot.wait_for('reaction_add')
+        await ctx.send(f"{user} zareagował {reaction}")
+        
+    @commands.command()
+    async def printweekday(self, ctx):
+        print(datetime.today().weekday())
+    
 def setup(client):
     client.add_cog(Tests(client))

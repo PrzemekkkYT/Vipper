@@ -230,7 +230,7 @@ class Music(commands.Cog):
             for vc in vcs:
                 clnt = await vc.connect()
                 playq[clnt.guild.id].insert(0, Music.song_search(Music, src=url))
-                clnt.play(discord.FFmpegPCMAudio(playq[clnt.guild.id][0]['source'], **FFMPEG_OPTIONS))
+                clnt.play(discord.FFmpegPCMAudio(playq[clnt.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(clnt.disconnect(), self.client.loop))
 
 def setup(client):
     client.add_cog(Music(client))

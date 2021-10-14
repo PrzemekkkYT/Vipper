@@ -118,8 +118,8 @@ async def sendembed(ctx, color : int, *, title):
     embed = discord.Embed(title=title, color=color)
     await ctx.send(embed=embed)
     
-@commands.command()
-async def getavatar(self, ctx, memid):
+@client.command()
+async def getavatar(ctx, memid):
     await ctx.send(ctx.guild.get_member(int(memid)).avatar_url)
 
 client.run(config["token"])

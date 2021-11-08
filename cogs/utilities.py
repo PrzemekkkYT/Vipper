@@ -2,8 +2,12 @@ import discord
 from discord.mentions import AllowedMentions
 from discord.ext import commands
 from discord.utils import find
-import traceback, useful, requests, sqlite3
+import traceback, useful, requests, sqlite3, io
 from datetime import date, datetime
+from PIL import Image
+from pytesseract import pytesseract
+
+pytesseract.tesseract_cmd = r"E:\Tesseract-OCR\tesseract"
 
 class Utilities(commands.Cog):
     def __init__(self, client):
@@ -100,6 +104,7 @@ class Utilities(commands.Cog):
             print("===========! HELP TRACEBACK !===========")
 
     async def postcurrentfg(self, client):
+        self.fg_response = requests.request("GET", self.fg_request_url, headers=self.fg_request_headers)
         rj = self.fg_response.json()
         current = []
         for i in range(len(rj["freeGames"]["current"])):
@@ -129,5 +134,11 @@ class Utilities(commands.Cog):
                 channel = guild.get_channel(gid[1])
                 await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
 
+    @commands.command()
+    async def ocr(self, ctx, url):
+        response = requests.get(url)
+        img = Image.open(io.BytesIO(response.content))
+        await ctx.send(pytesseract.image_to_string(img))
+    
 def setup(client):
     client.add_cog(Utilities(client))

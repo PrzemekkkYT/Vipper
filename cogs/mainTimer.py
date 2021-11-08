@@ -13,8 +13,8 @@ class MainTimer(commands.Cog):
 
     fg_request_url = "https://free-epic-games.p.rapidapi.com/free"
     fg_request_headers = {
-        'x-rapidapi-host': "free-epic-games.p.rapidapi.com",
-        'x-rapidapi-key': "4a35b378bemsh2dad8e6bec18de1p119880jsne3276f501ab7"
+    'x-rapidapi-host': "free-epic-games.p.rapidapi.com",
+    'x-rapidapi-key': "4a35b378bemsh2dad8e6bec18de1p119880jsne3276f501ab7"
     }
     fg_response = requests.request("GET", fg_request_url, headers=fg_request_headers)
     
@@ -45,9 +45,8 @@ class MainTimer(commands.Cog):
             print("Hejnał Mariacki")
             self.initEvents["hejnal"] = False
             asyncio.run_coroutine_threadsafe(Music.interruptListening(self, commands.Context, "https://www.youtube.com/watch?v=WVQbxXvyG7A", playqueue), self.client.loop)
-        elif (current_time=="17:00:00" and datetime.datetime.today().weekday()==3) or (current_time=="17:30:00" and datetime.datetime.today().weekday()==3) (current_time=="18:00:00" and datetime.datetime.today().weekday()==3) or (self.initEvents["freegames"] and datetime.datetime.today().weekday()==3):
+        elif (current_time=="18:00:00" and datetime.datetime.today().weekday()==3) or self.initEvents["freegames"]:
             self.initEvents["freegames"] = False
-            self.fg_response = requests.request("GET", self.fg_request_url, headers=self.fg_request_headers)
             asyncio.run_coroutine_threadsafe(Utilities.postcurrentfg(Utilities, self.client), self.client.loop)
             
     @commands.command()
@@ -59,7 +58,7 @@ class MainTimer(commands.Cog):
         elif event.lower()=="freegames":
             self.initEvents["freegames"] = True
         else:
-            ctx.send("Nie znaleziono podanego eventu")
+            await ctx.send("Nie znaleziono podanego eventu")
         
 def setup(client):
     client.add_cog(MainTimer(client))

@@ -4,6 +4,8 @@ from discord.utils import find
 import traceback, asyncio, youtube_dl
 
 playqueue = {}
+fullplayqueue = {}
+fullplayqueueposition = {}
 playcontext = {}
 
 FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -17,6 +19,8 @@ class Music(commands.Cog):
     async def on_ready(self):
         for guild in self.client.guilds:
             playqueue[guild.id] = []
+            fullplayqueue[guild.id] = []
+            fullplayqueueposition[guild.id] = 0
             
     def musicEmbed(self, toEmbed):
         return discord.Embed(title=(toEmbed), color=0X00AAFF)
@@ -82,6 +86,7 @@ class Music(commands.Cog):
     async def play_next(self, vc, context):
         if playqueue[vc.guild.id]:
             del playqueue[vc.guild.id][0]
+            fullplayqueueposition[vc.guild.id] += 1
             if len(playqueue[vc.guild.id]) > 0:
                 vc.play(discord.FFmpegPCMAudio(playqueue[vc.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, context), vc.loop))
                 await context.send(embed=self.musicEmbed("Odtwarzam: "+playqueue[vc.guild.id][0]['title']))
@@ -107,6 +112,7 @@ class Music(commands.Cog):
             
             song = self.song_search(url)
             playqueue[ctx.guild.id].append(song)
+            fullplayqueue[ctx.guild.id].append(song)
 
             if playqueue[ctx.guild.id][-1] is not None:
                 if not vc.is_playing():
@@ -230,7 +236,18 @@ class Music(commands.Cog):
             for vc in vcs:
                 clnt = await vc.connect()
                 playq[clnt.guild.id].insert(0, Music.song_search(Music, src=url))
+
                 clnt.play(discord.FFmpegPCMAudio(playq[clnt.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(clnt.disconnect(), self.client.loop))
+
+    @commands.command(brief="Powtarza ostatnią piosenkę", description="Ponownie puszcza ostatnio słuchaną piosenkę.", usage="v!playlast")
+    async def playlast(self, ctx):
+        if fullplayqueueposition[ctx.guild.id] >= 1:
+            fullplayqueueposition[ctx.guild.id] -= 1
+            playqueue[ctx.guild.id].insert(1, playqueue[ctx.guild.id][0])
+            playqueue[ctx.guild.id].insert(1, fullplayqueue[ctx.guild.id][fullplayqueueposition[ctx.guild.id]])
+            await self.skip(ctx)
+            fullplayqueueposition[ctx.guild.id] -= 1
+        else: await ctx.send(embed=self.musicEmbed("Brak piosenek do powtórzenia!"))
 
 def setup(client):
     client.add_cog(Music(client))

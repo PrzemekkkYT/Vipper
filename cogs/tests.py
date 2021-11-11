@@ -315,6 +315,12 @@ class Tests(commands.Cog):
     @commands.command()
     async def printweekday(self, ctx):
         print(datetime.today().weekday())
-    
+        
+    @commands.command()
+    async def emoji(self, ctx, emoji):
+        emoji = self.client.get_emoji(emoji)
+        print(emoji)
+        await ctx.send(emoji)
+        
 def setup(client):
     client.add_cog(Tests(client))

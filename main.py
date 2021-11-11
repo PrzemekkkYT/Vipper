@@ -6,6 +6,7 @@ import os, json
 
 intents = discord.Intents.all()
 intents.members = True
+intents.voice_states = True
 
 client = commands.Bot(command_prefix = "v!", intents=intents)
 client.remove_command("help")

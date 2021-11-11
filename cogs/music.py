@@ -1,15 +1,16 @@
+from re import L
 import discord
 from discord.ext import commands
 from discord.utils import find
-import traceback, asyncio, youtube_dl
+import traceback, asyncio, youtube_dl, requests
 
 playqueue = {}
 fullplayqueue = {}
 fullplayqueueposition = {}
-playcontext = {}
 
 FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-YDL_OPTIONS = {'format':"bestaudio"}
+YDL_OPTIONS = {'format':"bestaudio", "skip_download":True, "noplaylist":True}
+emojis = {"1️⃣": 0, "2️⃣": 1, "3️⃣": 2, "4️⃣": 3, "5️⃣": 4}
 
 class Music(commands.Cog):
     def __init__(self, client):
@@ -72,16 +73,30 @@ class Music(commands.Cog):
             else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
         else: await ctx.send(embed=self.musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym!"))
 
-    def song_search(self, src):
-        try:
-            with youtube_dl.YoutubeDL(YDL_OPTIONS ) as ydl:
-                info = ydl.extract_info(f"ytsearch:{src}", download=False)['entries'][0]
-                
-            return {'source': info['formats'][0]['url'], 'title': info['title']}
-        except Exception as inst:
-            print("===========! ERROR BYQ !===========")
-            print(inst)
-            print("===========! ERROR BYQ !===========")
+    def song_search(self, src, single=True):
+        if single:
+            try:
+                src = str(src).split('&', 1)[0]
+                with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
+                    info = ydl.extract_info(f"ytsearch:{src}", download=False)['entries'][0]
+                    
+                return {'source': info['formats'][0]['url'], 'title': info['title']}
+            except Exception as inst:
+                print("===========! ERROR BYQ !===========")
+                print(inst)
+                print("===========! ERROR BYQ !===========")
+        else:
+            try:
+                with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
+                    infos = ydl.extract_info(f"ytsearch5:{src}", download=False)['entries']
+                tracks = []
+                for info in infos:
+                    tracks.append({'source': info['formats'][0]['url'], 'title': info['title']})
+                return tracks
+            except Exception as inst:
+                print("===========! ERROR BYQ !===========")
+                print(inst)
+                print("===========! ERROR BYQ !===========")
 
     async def play_next(self, vc, context):
         if playqueue[vc.guild.id]:
@@ -93,13 +108,21 @@ class Music(commands.Cog):
                 vc.is_playing()
             else:
                 await context.send(embed=self.musicEmbed("Zakończono kolejkę"))
+                time = 0
+        while not vc.is_playing():
+            await asyncio.sleep(1)
+            time += 1
+            if vc.is_playing() and not vc.is_paused():
+                time = 0
+            if time >= 600:
+                await vc.disconnect()
+                await context.send(embed=self.musicEmbed("Muzyka nie jest odtwarzana od 10 minut, opuszczono kanał głosowy"))
+            if not vc.is_connected():
+                break
 
-    @commands.command(brief="Służy do odtwarzania muzyki", description="Służy do odtwarzania muzyki z platformy YouTube używając linka do wideo jako argumentu (nie każde wideo zadziała)", usage="v!play <youtube url>")
-    async def play(self, ctx, url=None):
+    @commands.command(aliases=['p'], brief="Służy do odtwarzania muzyki", description="Służy do odtwarzania muzyki z platformy YouTube używając:\n1. Linka do wideo jako argumentu (nie każde wideo zadziała)\n2. Wyszukiwania słownego (bot da możliwość wyboru utworu)", usage="v!play <youtube url / nazwa utworu>")
+    async def play(self, ctx, *, url=None):
         if url is not None:
-            print(f"playcontext1: {playcontext}")
-            playcontext[ctx.guild.id] = ctx
-            print(f"playcontext2: {playcontext}")
             if ctx.voice_client and ctx.message.author.voice:
                 vc = ctx.voice_client
                 await vc.move_to(ctx.message.author.voice.channel)
@@ -110,9 +133,49 @@ class Music(commands.Cog):
                     print("CONNECTION: ",connection)
                 else: return
             
-            song = self.song_search(url)
-            playqueue[ctx.guild.id].append(song)
-            fullplayqueue[ctx.guild.id].append(song)
+            if not requests.get(f"https://www.youtube.com/oembed?format=json&url={url}"):
+                songs = self.song_search(url, False)
+                embed = discord.Embed(
+                    title="Wybierz co chcesz słuchać",
+                    description=(
+                        "\n".join(
+                            f"**{i+1}.** {songs[i]['title']}"
+                            for i in range(len(songs))
+                        )
+                    )
+                )
+                embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/640px-YouTube_full-color_icon_%282017%29.svg.png")
+                msg = await ctx.send(embed=embed)
+                for emoji in emojis:
+                    await msg.add_reaction(emoji)
+                    
+                def check(reaction, user):
+                    return user == ctx.message.author and (
+                        str(reaction.emoji) == "1️⃣" or
+                        str(reaction.emoji) == "2️⃣" or
+                        str(reaction.emoji) == "3️⃣" or
+                        str(reaction.emoji) == "4️⃣" or
+                        str(reaction.emoji) == "5️⃣"
+                    )
+        
+                try:
+                    reaction, user = await self.client.wait_for("reaction_add", timeout=60.0, check=check)
+                except asyncio.TimeoutError:
+                    await msg.delete()
+                    await ctx.message.delete()
+                    embed = self.musicEmbed("Nie wybrano żadnej z możliwych piosenek")
+                    embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/640px-YouTube_full-color_icon_%282017%29.svg.png")
+                    await ctx.send(embed=embed)
+                else:
+                    await msg.delete()
+                    playqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
+                    fullplayqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
+                    if not vc.is_playing(): await ctx.send(embed=self.musicEmbed(f"Odtwarzam: {songs[emojis[reaction.emoji]]['title']}"))
+                
+            else:
+                song = self.song_search(url)
+                playqueue[ctx.guild.id].append(song)
+                fullplayqueue[ctx.guild.id].append(song)
 
             if playqueue[ctx.guild.id][-1] is not None:
                 if not vc.is_playing():

@@ -14,6 +14,6 @@ class Fun(commands.Cog):
                 await ctx.send(f"<@{int(memid)}> {content}")
             print(f"Zakończono spam użytkownika {memid}")
         else: await ctx.send("co za dużo to nie zdrowo, możesz zaspamować maksymalnie 30 wiadomościami, sorki :)")
-
+    
 def setup(client):
     client.add_cog(Fun(client))

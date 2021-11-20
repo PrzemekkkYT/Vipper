@@ -138,7 +138,7 @@ class Utilities(commands.Cog):
     async def ocr(self, ctx, url):
         response = requests.get(url)
         img = Image.open(io.BytesIO(response.content))
-        await ctx.send(pytesseract.image_to_string(img))
+        await ctx.send(pytesseract.image_to_string(img, lang="pol"))
     
 def setup(client):
     client.add_cog(Utilities(client))

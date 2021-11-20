@@ -12,6 +12,9 @@ FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconne
 YDL_OPTIONS = {'format':"bestaudio", "skip_download":True, "noplaylist":True}
 emojis = {"1️⃣": 0, "2️⃣": 1, "3️⃣": 2, "4️⃣": 3, "5️⃣": 4}
 
+def musicEmbed(toEmbed):
+    return discord.Embed(title=(toEmbed), color=0X00AAFF)
+
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -22,9 +25,6 @@ class Music(commands.Cog):
             playqueue[guild.id] = []
             fullplayqueue[guild.id] = []
             fullplayqueueposition[guild.id] = 0
-            
-    def musicEmbed(self, toEmbed):
-        return discord.Embed(title=(toEmbed), color=0X00AAFF)
     
     @commands.command(aliases=["join"], brief="Łączy bota z czatem głosowym", description="Umożliwia połączenie bota z czatem głosowym w celu późniejszego odtwarzania muzyki", usage="v!connect")
     async def connect(self, ctx, arg=None):
@@ -32,34 +32,34 @@ class Music(commands.Cog):
             if (ctx.author.voice):
                 if (ctx.voice_client):
                     if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                        await ctx.send(embed=self.musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
+                        await ctx.send(embed=musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
                         return False
                     else:
-                        await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale niż użytkownik"))
+                        await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale niż użytkownik"))
                         return False
                 else:
                     await ctx.author.voice.channel.connect()
-                    await ctx.send(embed=self.musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
                     return True
             else:
-                await ctx.send(embed=self.musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
+                await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
                 return False
         elif arg.lower()=="force":
             if (ctx.author.voice):
                 if (ctx.voice_client):
                     if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                        await ctx.send(embed=self.musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
+                        await ctx.send(embed=musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
                         return False
                     else:
                         await ctx.voice_client.move_to(ctx.author.voice.channel)
-                        await ctx.send(embed=self.musicEmbed(f"Wymuszono przeniesienie bota na kanał {ctx.author.voice.channel.name}"))
+                        await ctx.send(embed=musicEmbed(f"Wymuszono przeniesienie bota na kanał {ctx.author.voice.channel.name}"))
                         return False
                 else:
                     await ctx.author.voice.channel.connect()
-                    await ctx.send(embed=self.musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
                     return True
             else:
-                await ctx.send(embed=self.musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
+                await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
                 return False
     
     @commands.command(brief="Wyrzuca bota z kanału głosowego", desciption="Umożlwia wyrzucenie bota z kanału głosowego, jeżeli nie jest już potrzebny", usage="v!leave")
@@ -67,11 +67,11 @@ class Music(commands.Cog):
         if (ctx.author.voice):
             if (ctx.voice_client):
                 if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                    await ctx.send(embed=self.musicEmbed(f"Opuszczono kanał głosowy {ctx.voice_client.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(f"Opuszczono kanał głosowy {ctx.voice_client.channel.name}!"))
                     await ctx.voice_client.disconnect()
-                else: await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale niż użytkownik!"))
-            else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
-        else: await ctx.send(embed=self.musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym!"))
+                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale niż użytkownik!"))
+            else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+        else: await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym!"))
 
     def song_search(self, src, single=True):
         if single:
@@ -104,10 +104,10 @@ class Music(commands.Cog):
             fullplayqueueposition[vc.guild.id] += 1
             if len(playqueue[vc.guild.id]) > 0:
                 vc.play(discord.FFmpegPCMAudio(playqueue[vc.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, context), vc.loop))
-                await context.send(embed=self.musicEmbed("Odtwarzam: "+playqueue[vc.guild.id][0]['title']))
+                await context.send(embed=musicEmbed("Odtwarzam: "+playqueue[vc.guild.id][0]['title']))
                 vc.is_playing()
             else:
-                await context.send(embed=self.musicEmbed("Zakończono kolejkę"))
+                await context.send(embed=musicEmbed("Zakończono kolejkę"))
                 time = 0
         while not vc.is_playing():
             await asyncio.sleep(1)
@@ -116,7 +116,7 @@ class Music(commands.Cog):
                 time = 0
             if time >= 600:
                 await vc.disconnect()
-                await context.send(embed=self.musicEmbed("Muzyka nie jest odtwarzana od 10 minut, opuszczono kanał głosowy"))
+                await context.send(embed=musicEmbed("Muzyka nie jest odtwarzana od 10 minut, opuszczono kanał głosowy"))
             if not vc.is_connected():
                 break
 
@@ -163,14 +163,14 @@ class Music(commands.Cog):
                 except asyncio.TimeoutError:
                     await msg.delete()
                     await ctx.message.delete()
-                    embed = self.musicEmbed("Nie wybrano żadnej z możliwych piosenek")
+                    embed = musicEmbed("Nie wybrano żadnej z możliwych piosenek")
                     embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/640px-YouTube_full-color_icon_%282017%29.svg.png")
                     await ctx.send(embed=embed)
                 else:
                     await msg.delete()
                     playqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
                     fullplayqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
-                    if not vc.is_playing(): await ctx.send(embed=self.musicEmbed(f"Odtwarzam: {songs[emojis[reaction.emoji]]['title']}"))
+                    if not vc.is_playing(): await ctx.send(embed=musicEmbed(f"Odtwarzam: {songs[emojis[reaction.emoji]]['title']}"))
                 
             else:
                 song = self.song_search(url)
@@ -180,10 +180,10 @@ class Music(commands.Cog):
             if playqueue[ctx.guild.id][-1] is not None:
                 if not vc.is_playing():
                     vc.play(discord.FFmpegPCMAudio(playqueue[ctx.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, ctx), self.client.loop))
-                    #vc.is_playing()
-                else: await ctx.send(embed=self.musicEmbed("Dodano \""+playqueue[ctx.guild.id][-1]['title']+"\" do kolejki!"))
+                    await ctx.send(embed=musicEmbed(f"Odtwarzam {playqueue[vc.guild.id][0]['title']}"))
+                else: await ctx.send(embed=musicEmbed("Dodano \""+playqueue[ctx.guild.id][-1]['title']+"\" do kolejki!"))
             else: await ctx.send(embed=discord.Embed(title="Nie udało się użyć tego wideo, spróbuj z innym!", color=0xFF8800))
-        else: await ctx.send(embed=self.musicEmbed("Nie podano linku!"))
+        else: await ctx.send(embed=musicEmbed("Nie podano linku!"))
 
     @commands.command(brief="Zatrzymuje muzykę i czyści kolejkę", description="Zatrzymuję muzykę i czyści kolejkę, np. w celu stworzenia nowej kolejki do odtworzenia", usage="v!stop")
     async def stop(self, ctx):
@@ -195,10 +195,10 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     vc.stop()
                     playqueue[ctx.guild.id] = []
-                    await ctx.send(embed=self.musicEmbed("Zakończono odtwarzanie muzyki oraz wyczyszczono kolejkę"))
-                else: await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=self.musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                    await ctx.send(embed=musicEmbed("Zakończono odtwarzanie muzyki oraz wyczyszczono kolejkę"))
+                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
+            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
+        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
 
     @commands.command(brief="Pomija aktualnie odtwarzaną muzyke", description="Pomija aktualnie odtwarzaną muzykę i odtwarza następną z kolejki, jeżeli takowa znajduje się w kolejce", usage="v!skip")
     async def skip(self, ctx):
@@ -210,10 +210,10 @@ class Music(commands.Cog):
                         vc.stop()
                         embed = discord.Embed(title=f"Pominięto {playqueue[ctx.guild.id][0]['title']}", color=0x00AAFF)
                         await ctx.send(embed=embed)
-                    else: await ctx.send(embed=self.musicEmbed("Muzyka jest już zatrzymana!"))
-                else: await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=self.musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                    else: await ctx.send(embed=musicEmbed("Muzyka jest już zatrzymana!"))
+                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
+            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
+        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
 
     @commands.command(brief="Zatrzymuje aktualnie odtwarzaną muzykę", description="Zatrzymuje aktualnie odtwarzaną muzyke z możliwością wznowienia jej od tego samego momentu", usage="v!pause")
     async def pause(self, ctx):
@@ -223,11 +223,11 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     if vc.is_playing():
                         vc.pause()
-                        await ctx.send(embed=self.musicEmbed("Zatrzymano muzykę! Możesz wznowić komendą: v!resume"))
-                    else: await ctx.send(embed=self.musicEmbed("Muzyka jest już zatrzymana!"))
-                else: await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=self.musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                        await ctx.send(embed=musicEmbed("Zatrzymano muzykę! Możesz wznowić komendą: v!resume"))
+                    else: await ctx.send(embed=musicEmbed("Muzyka jest już zatrzymana!"))
+                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
+            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
+        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
 
     @commands.command(brief="Wznawia zatrzymaną muzykę", description="Wznawia zatrzymaną muzykę od momentu w którym została zatrzymana", usage="v!resume")
     async def resume(self, ctx):
@@ -237,11 +237,11 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     if vc.is_paused():
                         vc.resume()
-                        await ctx.send(embed=self.musicEmbed("Wznowiono odtwarzanie muzyki"))
-                    else: await ctx.send(embed=self.musicEmbed("Muzyka jest już odtwarzana!"))
-                else: await ctx.send(embed=self.musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=self.musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=self.musicEmbed("Bot nie jest połączony z żadnym kanałe glosowym!"))
+                        await ctx.send(embed=musicEmbed("Wznowiono odtwarzanie muzyki"))
+                    else: await ctx.send(embed=musicEmbed("Muzyka jest już odtwarzana!"))
+                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
+            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
+        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałe glosowym!"))
 
     @commands.command(aliases=['playqueue','musicqueue','vcqueue'], brief="Wyświetla kolejkę odtwarzania", description="Wyświetla 5 następnych piosenek do odtworzenia z kolejki", usage="v!queue")
     async def queue(self, ctx):
@@ -310,7 +310,7 @@ class Music(commands.Cog):
             playqueue[ctx.guild.id].insert(1, fullplayqueue[ctx.guild.id][fullplayqueueposition[ctx.guild.id]])
             await self.skip(ctx)
             fullplayqueueposition[ctx.guild.id] -= 1
-        else: await ctx.send(embed=self.musicEmbed("Brak piosenek do powtórzenia!"))
+        else: await ctx.send(embed=musicEmbed("Brak piosenek do powtórzenia!"))
 
 def setup(client):
     client.add_cog(Music(client))

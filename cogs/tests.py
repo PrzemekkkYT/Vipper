@@ -1,6 +1,7 @@
 from cogs.music import Music, FFMPEG_OPTIONS
 import discord
 import sqlite3, json, os, requests, io, useful, threading, asyncio
+from gtts.tts import gTTS
 from discord.utils import find
 from discord.mentions import AllowedMentions
 from discord.ext import commands
@@ -9,6 +10,7 @@ from discord.message import Attachment
 from discord_components import *
 from discord.abc import Messageable
 from datetime import date, datetime, timedelta
+from gtts import gTTS
 
 class Tests(commands.Cog):
     def __init__(self, client):
@@ -321,6 +323,12 @@ class Tests(commands.Cog):
         emoji = self.client.get_emoji(emoji)
         print(emoji)
         await ctx.send(emoji)
+        
+    @commands.command()
+    async def ttstest(self, ctx, *, text):
+        sound = gTTS(text=text, lang="pl")
+        sound.save("tts.mp3")
+        ctx.voice_client.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg.exe", source="E:/DiscordBot/PyVipper/tts.mp3"))
         
 def setup(client):
     client.add_cog(Tests(client))

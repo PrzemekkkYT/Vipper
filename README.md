@@ -6,12 +6,12 @@ Jak coś to mogę dodać komentarze przy funkcjach, itd.
 
 API: https://discordpy.readthedocs.io/en/stable/api.html
 
-config.json: ("configs" w razie potrzeby generuje się automatycznie)
-{
-    "token": "TOKEN",
-    "configs": {
-        "guild_id": {
-            "lang": "en"
-        }
-    }
+config.json: ("configs" w razie potrzeby generuje się automatycznie)__
+{__
+    "token": "TOKEN",__
+    "configs": {__
+        "guild_id": {__
+            "lang": "en"__
+        }__
+    }__
 }

@@ -2,7 +2,7 @@ from cogs.music import Music
 import discord
 from discord.ext import commands
 from gtts import gTTS, langs
-import json
+import json, os
 from useful import fixConfig
 
 class TTS(commands.Cog):
@@ -11,6 +11,7 @@ class TTS(commands.Cog):
 
     @commands.command(brief="Tekst na mowę", description="Zamienia tekst na mowę w różnych językach", usage="v!tts <treść>")
     async def tts(self, ctx, *, text):
+        fixConfig(str(ctx.guild.id))
         if ctx.voice_client and ctx.message.author.voice:
                 vc = ctx.voice_client
                 await vc.move_to(ctx.message.author.voice.channel)
@@ -21,11 +22,12 @@ class TTS(commands.Cog):
                 print("CONNECTION: ",connection)
             else: return
         
+        if not os.path.exists("tts"): os.makedirs("tts")
         sound = gTTS(text=text, lang=json.load(open('config.json', 'r'))["configs"][str(ctx.guild.id)]['lang'], slow=True)
-        sound.save("tts.mp3")
+        sound.save(f"tts/tts-{ctx.guild.id}.mp3")
         
         if not vc.is_playing():
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg.exe", source="E:/DiscordBot/PyVipper/tts.mp3"))
+            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg.exe", source=f"E:/DiscordBot/PyVipper/tts/tts-{ctx.guild.id}.mp3"))
         else: await ctx.send("Nie można odtworzyć, ponieważ muzyka jest odtwarzana")
         
     @commands.command(brief="Język TTS", description="Ustawia język w jakim czytany jest tekst funkcją TTS\nJeśli jako argument wpisze się \"langs\" bot wyświetli listę dostępnych języków", usage="v!ttslang <język>")

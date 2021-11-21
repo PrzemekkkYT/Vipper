@@ -1,7 +1,7 @@
 """Konwertery jednostek w celu lekkiego ułatwienia pracy :)"""
 
 from datetime import timezone
-import math, re
+import math, re, json
 
 month_pl = {
     "01": "stycznia",
@@ -90,3 +90,12 @@ class VMath():
         b = -2*a*p
         c = a*p**2+q
         return f"Postać ogólna: {a}x²+{b}x+{c}".replace("+-","-")
+    
+def fixConfig(guild_id:str):
+    with open("config.json", "r+") as config_file:
+        file_data = json.load(config_file)
+        if "configs" not in file_data: file_data["configs"] = {}
+        if guild_id not in file_data["configs"]: file_data["configs"][guild_id] = {}
+        if "lang" not in file_data["configs"][guild_id]: file_data["configs"][guild_id]["lang"] = "en"
+        config_file.seek(0)
+        json.dump(file_data, config_file, indent=4, ensure_ascii=False)

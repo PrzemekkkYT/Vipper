@@ -13,7 +13,7 @@ from discord_components import *
 from discord.abc import Messageable
 from datetime import date, datetime, timedelta
 from gtts import gTTS
-from useful import fixConfig, translate
+from useful import fixConfig, translate, fixPolls
 
 class Tests(commands.Cog):
     def __init__(self, client):
@@ -371,22 +371,34 @@ class Tests(commands.Cog):
     async def on_button_click(self, interaction):
         # await interaction.respond(content=f"Button Clicked, {interaction.custom_id}")
         # await interaction.message.edit(embed=discord.Embed(title=interaction.custom_id))
-        await interaction.respond(content="Dziękuję za zagłosowanie!")
-        if interaction.message.id in self.polls:
-            if interaction.custom_id not in self.polls[interaction.message.id]:
-                self.polls[interaction.message.id][interaction.custom_id] = 1
-            else: self.polls[interaction.message.id][interaction.custom_id] += 1
-            full = 0
-            print(f"podimid: {self.polls[interaction.message.id]}")
-            for option in self.polls[interaction.message.id]:
-                full += float(self.polls[interaction.message.id][option])
-            description = f"Wszystkie głosy: {full} | "
-            for option in self.polls[interaction.message.id]:
-                description = description + f"{option}: {'%.2f'%((float(self.polls[interaction.message.id][option])/full)*100)}% | "
-            embed = discord.Embed(title=interaction.message.embeds[0].title, description=description)
-            await interaction.message.edit(embed=embed)
-        else:
-            await interaction.respond(content="Not a poll")
+        with open("polls.json", "r+") as file:
+            guild_id = str(interaction.message.guild.id)
+            msg_id = str(interaction.message.id)
+            button_id = str(interaction.custom_id)
+            user_id = str(interaction.user.id)
+            polls_data = json.load(file)
+            if msg_id in polls_data[guild_id]:
+                if user_id not in polls_data[guild_id][msg_id]["voters"]:
+                    if button_id not in polls_data[guild_id][msg_id]["options"]:
+                        polls_data[guild_id][msg_id]["options"][button_id] = 1
+                    else: polls_data[guild_id][msg_id]["options"][button_id] += 1
+                    full = 0
+                    print(f"podimid: {polls_data[guild_id][msg_id]['options']}")
+                    for option in polls_data[guild_id][msg_id]['options']:
+                        full += float(polls_data[guild_id][msg_id]['options'][option])
+                    description = f"Wszystkie głosy: {full} | "
+                    for option in polls_data[guild_id][msg_id]['options']:
+                        description = description + f"{option}: {'%.2f'%((float(polls_data[guild_id][msg_id]['options'][option])/full)*100)}% | "
+                    polls_data[guild_id][msg_id]["voters"][user_id] = button_id
+                    embed = discord.Embed(title=interaction.message.embeds[0].title, description=description)
+                    await interaction.message.edit(embed=embed)
+                    await interaction.respond(content="Dziękuję za zagłosowanie!")
+                    file.seek(0)
+                    json.dump(polls_data, file, indent=4, ensure_ascii=False)
+                else: await interaction.respond(content="Odpowiedziałeś już w tym głosowaniu")
+            else:
+                await interaction.respond(content="Not a poll")
+            file.close()
         
     @commands.command()
     async def initpoll(self, ctx, name, *, options):
@@ -406,6 +418,22 @@ class Tests(commands.Cog):
         embed = discord.Embed(title = name, description=title)
         msg = await ctx.send(embed=embed, components=[components])
         self.polls[msg.id] = {}
+        guild_id = str(ctx.guild.id)
+        msg_id = str(msg.id)
+        fixPolls(guild_id)
+        with open("polls.json", "r+") as file:
+            file_data = json.load(file)
+            if msg_id not in file_data[guild_id]: file_data[guild_id][msg_id] = {}
+            if "title" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["title"] = name
+            if "options" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["options"] = {}
+            if "voters" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["voters"] = {}
+            for option in options:
+                file_data[guild_id][msg_id]["options"][option] = 0
+            file.seek(0)
+            json.dump(file_data, file, indent=4, ensure_ascii=False)
+            file.close()
+            
+            
         
 def setup(client):
     client.add_cog(Tests(client))

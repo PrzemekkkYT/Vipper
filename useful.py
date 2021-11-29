@@ -101,6 +101,13 @@ def fixConfig(guild_id:str):
         config_file.seek(0)
         json.dump(file_data, config_file, indent=4, ensure_ascii=False)
         
+def fixPolls(guild_id:str):
+    with open("polls.json", "r+") as file:
+        file_data = json.load(file)
+        if guild_id not in file_data: file_data[guild_id] = {}
+        file.seek(0)
+        json.dump(file_data, file, indent=4, ensure_ascii=False)
+        
 def translate(guild_id, text:str, vars:list=[]):
     try:
         result:str = json.load(open("langs.json", "r", encoding="utf-8"))[json.load(open("config.json", "r", encoding="utf-8"))["configs"][str(guild_id)]["lang"]][text]

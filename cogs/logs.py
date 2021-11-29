@@ -3,9 +3,9 @@ import discord
 from discord.ext import commands
 from datetime import date, timezone
 import os, json, io, useful
-
 from discord.flags import MemberCacheFlags
 from discord.role import Role
+from useful import translate
 
 class Logs(commands.Cog):
     def __init__(self, client):
@@ -14,17 +14,17 @@ class Logs(commands.Cog):
     activelogsbool = True
 
     #czy bot ma rejestrować wszystkie konwersacje na serwerze
-    @commands.command(brief="Ustawienie zapisywania logów serwera", description="Ustala czy wszystkie interakcje (konwersacje, kanały) na serwerze mają być zapisywane do logów", usage="v!activelogs")
+    @commands.command(brief="activelogs.brief", description="activelogs.description", usage="activelogs.usage")
     async def activelogs(self, ctx):
         global activelogsbool
         if self.activelogsbool:
             self.activelogsbool = False
-            await ctx.send("Ta konwersacja nie będzie już rejestrowana")
+            await ctx.send(translate(ctx.guild.id, "activelogs.stopreg"))
         else:
             self.activelogsbool = True
-            await ctx.send("Rozpoczynam rejestrowanie konwersacji")
+            await ctx.send(translate(ctx.guild.id, "activelogs.startreg"))
 
-    @commands.command(brief="Pobranie logów serwera", description="Umożliwia pobranie logów serwera z określonego dnia", usage="v!downloadlog <data(RRRR-MM-DD)> [typ (chat / guild)]")
+    @commands.command(brief="downloadlog.brief", description="downloadlog.description", usage="downloadlog.usage")
     async def downloadlog(self, ctx, udate, type=None):
         if ctx.guild:
             path_chat = 'logs/chat/C-{0}-{1}.json'.format(ctx.guild.id, udate)
@@ -33,19 +33,19 @@ class Logs(commands.Cog):
             if os.path.exists(path_guild): filedata_guild = io.BytesIO(open(path_guild, "rb").read())
             if type is None:
                 if os.path.exists(path_chat):
-                    await ctx.send(content=f"Logi czatów z dnia {udate}:", file=discord.File(filedata_chat, filename=path_chat[9:]))
+                    await ctx.send(content=translate(ctx.guild.id, "downloadlog.chat", [udate]), file=discord.File(filedata_chat, filename=path_chat[9:]))
                 elif os.path.exists(path_guild):
-                    await ctx.send(content=f"Logi serwera z dnia {udate}:", file=discord.File(filedata_guild, filename=path_chat[10:]))
-                else: await ctx.send(content=f"Nie udało się odnaleźć logów z dnia {udate}")
+                    await ctx.send(content=translate(ctx.guild.id, "downloadlog.guild", [udate]), file=discord.File(filedata_guild, filename=path_chat[10:]))
+                else: await ctx.send(translate(ctx.guild.id, "downloadlog.fail", [udate]))
             elif type=="chat":
                 if os.path.exists(path_chat):
-                    await ctx.send(f"Logi czatów z dnia {udate}:", file=discord.File(filedata_chat, filename=path_chat[9:]))
-                else: await ctx.send(f"Nie udało się odnaleźć logów z dnia {udate}")
+                    await ctx.send(translate(ctx.guild.id, "downloadlog.chat", [udate]), file=discord.File(filedata_chat, filename=path_chat[9:]))
+                else: await ctx.send(translate(ctx.guild.id, "downloadlog.fail", [udate]))
             elif type=="guild":
                 if os.path.exists(path_guild):
-                    await ctx.send(f"Logi serwera z dnia {udate}:", file=discord.File(filedata_guild, filename=path_chat[10:]))
-                else: await ctx.send(f"Nie udało się odnaleźć logów z dnia {udate}")
-            else: await ctx.send("Nie ma takiej kategorii!")
+                    await ctx.send(translate(ctx.guild.id, "downloadlog.guild", [udate]), file=discord.File(filedata_guild, filename=path_chat[10:]))
+                else: await ctx.send(translate(ctx.guild.id, "downloadlog.fail", [udate]))
+            else: await ctx.send(translate(ctx.guild.id, "downloadlog.nocategory"))
 
     def json_message_info(self, message, message_ca, type):
         attachments = []

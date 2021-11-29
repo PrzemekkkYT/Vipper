@@ -1,6 +1,8 @@
+import math
 from cogs.music import Music, FFMPEG_OPTIONS
 import discord
 import sqlite3, json, os, requests, io, useful, threading, asyncio
+from discord import integrations
 from gtts.tts import gTTS
 from discord.utils import find
 from discord.mentions import AllowedMentions
@@ -11,6 +13,7 @@ from discord_components import *
 from discord.abc import Messageable
 from datetime import date, datetime, timedelta
 from gtts import gTTS
+from useful import fixConfig, translate
 
 class Tests(commands.Cog):
     def __init__(self, client):
@@ -329,6 +332,80 @@ class Tests(commands.Cog):
         sound = gTTS(text=text, lang="pl")
         sound.save("tts.mp3")
         ctx.voice_client.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg.exe", source="E:/DiscordBot/PyVipper/tts.mp3"))
+        
+    @commands.command()
+    async def langtest(self, ctx, *, text):
+        await ctx.send(translate(ctx.guild.id, text))
+        
+    @commands.command()
+    async def procents(self, ctx, msgid, first, second):
+        #await ctx.send(f"{first} w {second} = {(float(first)/float(second))*100}%")
+        first, second = float(first),float(second)
+        full = first+second
+        # await ctx.send(f"{full}, {'%.2f'%((first/full)*100)}%, {'%.2f'%((second/full)*100)}%")
+        msg = await ctx.fetch_message(msgid)
+        embed = discord.Embed(title=f"{'%.2f'%((first/full)*100)}% | {'%.2f'%((second/full)*100)}%")
+        await msg.edit(embed=embed)
+        
+    @commands.command()
+    async def editembed(self, ctx, msgid):
+        msg = await ctx.fetch_message(msgid)
+        print(msg)
+        newembed = discord.Embed(title="test123")
+        await msg.edit(embed=newembed)
+        print(msg.embeds[0].title)
+        
+    @commands.command()
+    async def probuttons(self, ctx):
+        await ctx.send(
+            "Buttons!",
+            components=[
+                [Button(label="Button1", custom_id="button1"),
+                Button(label="Button2", custom_id="button2")]
+            ]
+        )
+    
+    polls = {}
+    
+    @commands.Cog.listener() #DO ZROBIENIA: ZAPISYWANIE POLLÓW DO PLIKU, MAX 1 GŁOS NA OSOBĘ, LEPSZE UI
+    async def on_button_click(self, interaction):
+        # await interaction.respond(content=f"Button Clicked, {interaction.custom_id}")
+        # await interaction.message.edit(embed=discord.Embed(title=interaction.custom_id))
+        await interaction.respond(content="Dziękuję za zagłosowanie!")
+        if interaction.message.id in self.polls:
+            if interaction.custom_id not in self.polls[interaction.message.id]:
+                self.polls[interaction.message.id][interaction.custom_id] = 1
+            else: self.polls[interaction.message.id][interaction.custom_id] += 1
+            full = 0
+            print(f"podimid: {self.polls[interaction.message.id]}")
+            for option in self.polls[interaction.message.id]:
+                full += float(self.polls[interaction.message.id][option])
+            description = f"Wszystkie głosy: {full} | "
+            for option in self.polls[interaction.message.id]:
+                description = description + f"{option}: {'%.2f'%((float(self.polls[interaction.message.id][option])/full)*100)}% | "
+            embed = discord.Embed(title=interaction.message.embeds[0].title, description=description)
+            await interaction.message.edit(embed=embed)
+        else:
+            await interaction.respond(content="Not a poll")
+        
+    @commands.command()
+    async def initpoll(self, ctx, name, *, options):
+        options = options.split(" ")
+        components = []
+        if 1 < len(options) <= 5:
+            for option in options:
+                components.append(Button(label=option, custom_id=option))
+        else:
+            await ctx.send("Minimalnie 2 i maksymalnie 5 możliwości!")
+            return
+        
+        title = ""
+        for option, i in zip(options, range(len(options))):
+            title = title + option
+            if i < len(options)-1: title = title + ", "
+        embed = discord.Embed(title = name, description=title)
+        msg = await ctx.send(embed=embed, components=[components])
+        self.polls[msg.id] = {}
         
 def setup(client):
     client.add_cog(Tests(client))

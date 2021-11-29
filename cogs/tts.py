@@ -3,13 +3,13 @@ import discord
 from discord.ext import commands
 from gtts import gTTS, langs
 import json, os
-from useful import fixConfig
+from useful import fixConfig, translate
 
 class TTS(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(brief="Tekst na mowę", description="Zamienia tekst na mowę w różnych językach", usage="v!tts <treść>")
+    @commands.command(brief="tts.brief", description="tts.description", usage="tts.usage")
     async def tts(self, ctx, *, text):
         fixConfig(str(ctx.guild.id))
         if ctx.voice_client and ctx.message.author.voice:
@@ -23,14 +23,14 @@ class TTS(commands.Cog):
             else: return
         
         if not os.path.exists("tts"): os.makedirs("tts")
-        sound = gTTS(text=text, lang=json.load(open('config.json', 'r'))["configs"][str(ctx.guild.id)]['lang'], slow=True)
+        sound = gTTS(text=text, lang=json.load(open('config.json', 'r'))["configs"][str(ctx.guild.id)]['ttslang'], slow=True)
         sound.save(f"tts/tts-{ctx.guild.id}.mp3")
         
         if not vc.is_playing():
             vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg.exe", source=f"E:/DiscordBot/PyVipper/tts/tts-{ctx.guild.id}.mp3"))
-        else: await ctx.send("Nie można odtworzyć, ponieważ muzyka jest odtwarzana")
+        else: await ctx.send(translate(ctx.guild.id, "tts.isplaying"))
         
-    @commands.command(brief="Język TTS", description="Ustawia język w jakim czytany jest tekst funkcją TTS\nJeśli jako argument wpisze się \"langs\" bot wyświetli listę dostępnych języków", usage="v!ttslang <język>")
+    @commands.command(brief="ttslang.brief", description="ttslang.description", usage="ttslang.usage")
     async def ttslang(self, ctx, lang=None):
         guild_id = str(ctx.guild.id)
         fixConfig(guild_id)
@@ -45,14 +45,14 @@ class TTS(commands.Cog):
             if lang in langs._langs:
                 with open("config.json", 'r+', encoding="utf-8") as json_file:
                     file_data = json.load(json_file)
-                    if lang != file_data["configs"][guild_id]["lang"]:
-                        file_data["configs"][guild_id]["lang"] = lang
+                    if lang != file_data["configs"][guild_id]["ttslang"]:
+                        file_data["configs"][guild_id]["ttslang"] = lang
                         json_file.seek(0)
                         json.dump(file_data, json_file, indent=4, ensure_ascii=False)
-                        await ctx.send(f"Ustawiono język na {langs._langs[lang]}")
-                    else: await ctx.send(f"Język {langs._langs[lang]} jest już ustawiony")
-            else: await ctx.send("Nie ma takiego języka")
-        else: await ctx.send(f"Aktualnie ustawiony język to: {langs._langs[json.load(open('config.json', 'r'))['configs'][guild_id]['lang']]}")
+                        await ctx.send(translate(ctx.guild.id, "ttslang.setlang", [langs._langs[lang]]))
+                    else: await ctx.send(translate(ctx.guild.id, "ttslang.alreadyset", [langs._langs[lang]]))
+            else: await ctx.send(translate(ctx.guild.id, "ttslang.nolang"))
+        else: await ctx.send(translate(ctx.guild.id, "ttslang.current", [langs._langs[json.load(open('config.json', 'r'))['configs'][guild_id]['ttslang']]]))
         
 def setup(client):
     client.add_cog(TTS(client))

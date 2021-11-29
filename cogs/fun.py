@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
+from useful import translate
 
 class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(brief="Spamuje określnego użytkownika", description="Spamuje określonego użytkownika maksymalnie 30 razy określoną wiadomością\nId użytkownika można pobrać klikając na niego prawym, po czym wybrać opcję \"Kopiuj ID\"\n[Usunięcie wiadomości] = true/false usuwa wiadomość, żeby osoba spamowana nie wiedziała kto to zrobił", usage="v!spamuser <ilość> <id użytkownika> [usunięcie wiadomości] [treść spamu]")
+    @commands.command(brief="spamuser.brief", description="spamuser.description", usage="spamuser.usage")
     async def spamuser(self, ctx, count, memid, delmsg:str="false", *, content="haha spam xD"):
         if delmsg.lower()=="true":
             await ctx.message.delete()
@@ -13,7 +14,13 @@ class Fun(commands.Cog):
             for i in range(int(count)):
                 await ctx.send(f"<@{int(memid)}> {content}")
             print(f"Zakończono spam użytkownika {memid}")
-        else: await ctx.send("co za dużo to nie zdrowo, możesz zaspamować maksymalnie 30 wiadomościami, sorki :)")
+        else: await ctx.send(translate(ctx.guild.id, "spamuser.toomany"))
+        
+    @commands.Cog.listener()
+    async def on_member_update(self, before, after):
+        if after.id == 725711519765233676:
+            if after.display_name != "Stópkasz":
+                await after.edit(nick="Stópkasz")
     
 def setup(client):
     client.add_cog(Fun(client))

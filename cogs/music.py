@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from discord.utils import find
 import traceback, asyncio, youtube_dl, requests
+from useful import translate
 
 playqueue = {}
 fullplayqueue = {}
@@ -26,52 +27,52 @@ class Music(commands.Cog):
             fullplayqueue[guild.id] = []
             fullplayqueueposition[guild.id] = 0
     
-    @commands.command(aliases=["join"], brief="Łączy bota z czatem głosowym", description="Umożliwia połączenie bota z czatem głosowym w celu późniejszego odtwarzania muzyki", usage="v!connect")
+    @commands.command(aliases=["join"], brief="connect.brief", description="connect.description", usage="connect.usage")
     async def connect(self, ctx, arg=None):
         if arg==None:
             if (ctx.author.voice):
                 if (ctx.voice_client):
                     if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                        await ctx.send(embed=musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.alreadyconnected")))
                         return False
                     else:
-                        await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale niż użytkownik"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
                         return False
                 else:
                     await ctx.author.voice.channel.connect()
-                    await ctx.send(embed=musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.connected", [ctx.author.voice.channel.name])))
                     return True
             else:
-                await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
+                await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
                 return False
         elif arg.lower()=="force":
             if (ctx.author.voice):
                 if (ctx.voice_client):
                     if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                        await ctx.send(embed=musicEmbed("Bot jest już połączony z kanałem na którym znajduje się użytkownik"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.alreadyconnected")))
                         return False
                     else:
                         await ctx.voice_client.move_to(ctx.author.voice.channel)
-                        await ctx.send(embed=musicEmbed(f"Wymuszono przeniesienie bota na kanał {ctx.author.voice.channel.name}"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.forceconnect", [ctx.author.voice.channel.name])))
                         return False
                 else:
                     await ctx.author.voice.channel.connect()
-                    await ctx.send(embed=musicEmbed(f"Połączono z kanałem głosowym {ctx.author.voice.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.connected", [ctx.author.voice.channel.name])))
                     return True
             else:
-                await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym"))
+                await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "connect.notconnected")))
                 return False
     
-    @commands.command(brief="Wyrzuca bota z kanału głosowego", desciption="Umożlwia wyrzucenie bota z kanału głosowego, jeżeli nie jest już potrzebny", usage="v!leave")
+    @commands.command(brief="leave.brief", description="leave.description", usage="leave.usage")
     async def leave(self, ctx):
         if (ctx.author.voice):
             if (ctx.voice_client):
                 if ctx.voice_client.channel.id is ctx.author.voice.channel.id:
-                    await ctx.send(embed=musicEmbed(f"Opuszczono kanał głosowy {ctx.voice_client.channel.name}!"))
+                    await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "leave.left", [ctx.voice_client.channel.name])))
                     await ctx.voice_client.disconnect()
-                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale niż użytkownik!"))
-            else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
-        else: await ctx.send(embed=musicEmbed("Użytkownik nie jest połączony z żadnym kanałem głosowym!"))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
+            else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.usernotconnected")))
 
     def song_search(self, src, single=True):
         if single:
@@ -104,10 +105,10 @@ class Music(commands.Cog):
             fullplayqueueposition[vc.guild.id] += 1
             if len(playqueue[vc.guild.id]) > 0:
                 vc.play(discord.FFmpegPCMAudio(playqueue[vc.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, context), vc.loop))
-                await context.send(embed=musicEmbed("Odtwarzam: "+playqueue[vc.guild.id][0]['title']))
+                await context.send(embed=musicEmbed(translate(context.guild.id, "playnext.nowplaying", [playqueue[vc.guild.id][0]['title']])))
                 vc.is_playing()
             else:
-                await context.send(embed=musicEmbed("Zakończono kolejkę"))
+                await context.send(embed=musicEmbed(translate(context.guild.id, "playnext.queueend")))
                 time = 0
         while not vc.is_playing():
             await asyncio.sleep(1)
@@ -116,11 +117,11 @@ class Music(commands.Cog):
                 time = 0
             if time >= 600:
                 await vc.disconnect()
-                await context.send(embed=musicEmbed("Muzyka nie jest odtwarzana od 10 minut, opuszczono kanał głosowy"))
+                await context.send(embed=musicEmbed(translate(context.guild.id, "playnext.leaved")))
             if not vc.is_connected():
                 break
 
-    @commands.command(aliases=['p'], brief="Służy do odtwarzania muzyki", description="Służy do odtwarzania muzyki z platformy YouTube używając:\n1. Linka do wideo jako argumentu (nie każde wideo zadziała)\n2. Wyszukiwania słownego (bot da możliwość wyboru utworu)", usage="v!play <youtube url / nazwa utworu>")
+    @commands.command(aliases=['p'], brief="play.brief", description="play.description", usage="play.usage")
     async def play(self, ctx, *, url=None):
         if url is not None:
             if ctx.voice_client and ctx.message.author.voice:
@@ -136,7 +137,7 @@ class Music(commands.Cog):
             if not requests.get(f"https://www.youtube.com/oembed?format=json&url={url}"):
                 songs = self.song_search(url, False)
                 embed = discord.Embed(
-                    title="Wybierz co chcesz słuchać",
+                    title=translate(ctx.guild.id, "play.choicetitle"),
                     description=(
                         "\n".join(
                             f"**{i+1}.** {songs[i]['title']}"
@@ -163,14 +164,14 @@ class Music(commands.Cog):
                 except asyncio.TimeoutError:
                     await msg.delete()
                     await ctx.message.delete()
-                    embed = musicEmbed("Nie wybrano żadnej z możliwych piosenek")
+                    embed = musicEmbed(translate(ctx.guild.id, "play.notselected"))
                     embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/640px-YouTube_full-color_icon_%282017%29.svg.png")
                     await ctx.send(embed=embed)
                 else:
                     await msg.delete()
                     playqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
                     fullplayqueue[ctx.guild.id].append(songs[emojis[reaction.emoji]])
-                    if not vc.is_playing(): await ctx.send(embed=musicEmbed(f"Odtwarzam: {songs[emojis[reaction.emoji]]['title']}"))
+                    if not vc.is_playing(): await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "play.nowplaying", [songs[emojis[reaction.emoji]]['title']])))
                 
             else:
                 song = self.song_search(url)
@@ -180,12 +181,12 @@ class Music(commands.Cog):
             if playqueue[ctx.guild.id][-1] is not None:
                 if not vc.is_playing():
                     vc.play(discord.FFmpegPCMAudio(playqueue[ctx.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, ctx), self.client.loop))
-                    await ctx.send(embed=musicEmbed(f"Odtwarzam {playqueue[vc.guild.id][0]['title']}"))
-                else: await ctx.send(embed=musicEmbed("Dodano \""+playqueue[ctx.guild.id][-1]['title']+"\" do kolejki!"))
-            else: await ctx.send(embed=discord.Embed(title="Nie udało się użyć tego wideo, spróbuj z innym!", color=0xFF8800))
-        else: await ctx.send(embed=musicEmbed("Nie podano linku!"))
+                    await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "play.nowplaying", [playqueue[vc.guild.id][0]['title']])))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "play.queueadd", [playqueue[ctx.guild.id][-1]['title']])))
+            else: await ctx.send(embed=discord.Embed(title=translate(ctx.guild.id, "play.playerror"), color=0xFF8800))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "play.nolink")))
 
-    @commands.command(brief="Zatrzymuje muzykę i czyści kolejkę", description="Zatrzymuję muzykę i czyści kolejkę, np. w celu stworzenia nowej kolejki do odtworzenia", usage="v!stop")
+    @commands.command(brief="stop.brief", description="stop.description", usage="stop.usage")
     async def stop(self, ctx):
         global playqueue
 
@@ -195,12 +196,12 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     vc.stop()
                     playqueue[ctx.guild.id] = []
-                    await ctx.send(embed=musicEmbed("Zakończono odtwarzanie muzyki oraz wyczyszczono kolejkę"))
-                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                    await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "stop.stopped")))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
+            else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.usernotconnected")))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
 
-    @commands.command(brief="Pomija aktualnie odtwarzaną muzyke", description="Pomija aktualnie odtwarzaną muzykę i odtwarza następną z kolejki, jeżeli takowa znajduje się w kolejce", usage="v!skip")
+    @commands.command(brief="skip.brief", description="skip.description", usage="skip.usage")
     async def skip(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -208,14 +209,14 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     if vc.is_playing():
                         vc.stop()
-                        embed = discord.Embed(title=f"Pominięto {playqueue[ctx.guild.id][0]['title']}", color=0x00AAFF)
+                        embed = discord.Embed(title=translate(ctx.guild.id, "skip.skipped", [playqueue[ctx.guild.id][0]['title']]), color=0x00AAFF)
                         await ctx.send(embed=embed)
-                    else: await ctx.send(embed=musicEmbed("Muzyka jest już zatrzymana!"))
-                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                    else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "skip.stopped")))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
+            else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.usernotconnected")))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
 
-    @commands.command(brief="Zatrzymuje aktualnie odtwarzaną muzykę", description="Zatrzymuje aktualnie odtwarzaną muzyke z możliwością wznowienia jej od tego samego momentu", usage="v!pause")
+    @commands.command(brief="pause.brief", description="pause.description", usage="pause.usage")
     async def pause(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -223,13 +224,13 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     if vc.is_playing():
                         vc.pause()
-                        await ctx.send(embed=musicEmbed("Zatrzymano muzykę! Możesz wznowić komendą: v!resume"))
-                    else: await ctx.send(embed=musicEmbed("Muzyka jest już zatrzymana!"))
-                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałem głosowym!"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "pause.paused")))
+                    else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "pause.alreadypaused")))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
+            else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.usernotconnected")))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
 
-    @commands.command(brief="Wznawia zatrzymaną muzykę", description="Wznawia zatrzymaną muzykę od momentu w którym została zatrzymana", usage="v!resume")
+    @commands.command(brief="resume.brief", description="resume.description", usage="resume.usage")
     async def resume(self, ctx):
         vc = ctx.voice_client
         if vc:
@@ -237,29 +238,29 @@ class Music(commands.Cog):
                 if vc.channel.id == ctx.message.author.voice.channel.id:
                     if vc.is_paused():
                         vc.resume()
-                        await ctx.send(embed=musicEmbed("Wznowiono odtwarzanie muzyki"))
-                    else: await ctx.send(embed=musicEmbed("Muzyka jest już odtwarzana!"))
-                else: await ctx.send(embed=musicEmbed("Bot znajduje się na innym kanale!"))
-            else: await ctx.send(embed=musicEmbed("Nie znajdujesz się na żadnym kanale głosowym!"))
-        else: await ctx.send(embed=musicEmbed("Bot nie jest połączony z żadnym kanałe glosowym!"))
+                        await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "resume.resumed")))
+                    else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "resume.alreadyplaying")))
+                else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.diffrentchannel")))
+            else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.usernotconnected")))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "vc.notconnected")))
 
-    @commands.command(aliases=['playqueue','musicqueue','vcqueue'], brief="Wyświetla kolejkę odtwarzania", description="Wyświetla 5 następnych piosenek do odtworzenia z kolejki", usage="v!queue")
+    @commands.command(aliases=['playqueue','musicqueue','vcqueue'], brief="queue.brief", description="queue.description", usage="queue.usage")
     async def queue(self, ctx):
         try:
             if not playqueue[ctx.guild.id] or len(playqueue[ctx.guild.id]) < 1:
-                title = "Brak piosenek w kolejce"
-                description="Możesz dodać jakieś komendą v!play (link)"
+                title = translate(ctx.guild.id, "queue.nosongs")
+                description= translate(ctx.guild.id, "queue.advice")
             elif len(playqueue[ctx.guild.id]) <= 6 and len(playqueue[ctx.guild.id]) >=1:
-                title = ("Aktualnie odtwarzane:\n"+playqueue[ctx.guild.id][0]['title'])
-                description = (str(len(playqueue[ctx.guild.id])-1)+" piosenek do odtworzenia")
+                title = translate(ctx.guild.id, "queue.current", [playqueue[ctx.guild.id][0]['title']])
+                description = translate(ctx.guild.id, "queue.toplay", [str(len(playqueue[ctx.guild.id])-1)])
                 for i in range(1, len(playqueue[ctx.guild.id])):
                     if playqueue[ctx.guild.id][i] is not None:
                         description = description + ("\n• "+playqueue[ctx.guild.id][i]['title'])
                     else:
                         description = description + ("\n• ------------")
             else:
-                title = ("Aktualnie odtwarzane:\n"+playqueue[ctx.guild.id][0]['title'])
-                description = (str(len(playqueue[ctx.guild.id])-1)+" piosenek do odtworzenia")
+                title = translate(ctx.guild.id, "queue.current", [playqueue[ctx.guild.id][0]['title']])
+                description = translate(ctx.guild.id, "queue.toplay", [str(len(playqueue[ctx.guild.id])-1)])
                 for i in range(1,6):
                     if playqueue[ctx.guild.id][i] is not None:
                         description = description + ("\n• "+playqueue[ctx.guild.id][i]['title'])
@@ -302,7 +303,7 @@ class Music(commands.Cog):
 
                 clnt.play(discord.FFmpegPCMAudio(playq[clnt.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(clnt.disconnect(), self.client.loop))
 
-    @commands.command(brief="Powtarza ostatnią piosenkę", description="Ponownie puszcza ostatnio słuchaną piosenkę.", usage="v!playlast")
+    @commands.command(brief="playlast.brief", description="playlast.description", usage="playlast.usage")
     async def playlast(self, ctx):
         if fullplayqueueposition[ctx.guild.id] >= 1:
             fullplayqueueposition[ctx.guild.id] -= 1
@@ -310,7 +311,7 @@ class Music(commands.Cog):
             playqueue[ctx.guild.id].insert(1, fullplayqueue[ctx.guild.id][fullplayqueueposition[ctx.guild.id]])
             await self.skip(ctx)
             fullplayqueueposition[ctx.guild.id] -= 1
-        else: await ctx.send(embed=musicEmbed("Brak piosenek do powtórzenia!"))
+        else: await ctx.send(embed=musicEmbed(translate(ctx.guild.id, "playlast.nosongs")))
 
 def setup(client):
     client.add_cog(Music(client))

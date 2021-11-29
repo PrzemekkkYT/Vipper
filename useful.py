@@ -97,5 +97,18 @@ def fixConfig(guild_id:str):
         if "configs" not in file_data: file_data["configs"] = {}
         if guild_id not in file_data["configs"]: file_data["configs"][guild_id] = {}
         if "lang" not in file_data["configs"][guild_id]: file_data["configs"][guild_id]["lang"] = "en"
+        if "ttslang" not in file_data["configs"][guild_id]: file_data["configs"][guild_id]["ttslang"] = "en"
         config_file.seek(0)
         json.dump(file_data, config_file, indent=4, ensure_ascii=False)
+        
+def translate(guild_id, text:str, vars:list=[]):
+    try:
+        result:str = json.load(open("langs.json", "r", encoding="utf-8"))[json.load(open("config.json", "r", encoding="utf-8"))["configs"][str(guild_id)]["lang"]][text]
+    except:
+        return f"No translation found for \"{text}\" in language: {json.load(open('config.json', 'r', encoding='utf-8'))['configs'][str(guild_id)]['lang']}"
+    if not vars:
+        return result
+    else:
+        for i in range(len(vars)):
+            result = result.replace(f"var({i})", f"{vars[i]}")
+        return result

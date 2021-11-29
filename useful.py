@@ -1,7 +1,7 @@
 """Konwertery jednostek w celu lekkiego ułatwienia pracy :)"""
 
 from datetime import timezone
-import math, re, json
+import math, re, json, os
 
 month_pl = {
     "01": "stycznia",
@@ -102,6 +102,10 @@ def fixConfig(guild_id:str):
         json.dump(file_data, config_file, indent=4, ensure_ascii=False)
         
 def fixPolls(guild_id:str):
+    if not os.path.exists("polls.json"):
+        with open("polls.json", "a+") as file:
+            json.dump({}, file, indent=4, ensure_ascii=False) 
+            file.close()
     with open("polls.json", "r+") as file:
         file_data = json.load(file)
         if guild_id not in file_data: file_data[guild_id] = {}

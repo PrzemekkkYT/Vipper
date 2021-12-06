@@ -49,7 +49,7 @@ class MainTimer(commands.Cog):
             self.initEvents["freegames"] = False
             asyncio.run_coroutine_threadsafe(Utilities.postcurrentfg(Utilities, self.client), self.client.loop)
             
-    @commands.command()
+    @commands.command(hidden=True)
     async def initevent(self, ctx, event:str):
         if event.lower()=="barka":
             self.initEvents["barka"] = True

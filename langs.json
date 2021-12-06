@@ -112,7 +112,13 @@
         "setlang.current": "Current language: var(0)",
         "ocr.brief": "Extracting text from photos",
         "ocr.description": "Extracting text from photos using url\n(Pasting photos directly wouldn't currently work)",
-        "ocr.usage": "v!ocr <url to photo>"
+        "ocr.usage": "v!ocr <url to photo>",
+        "initpoll.brief": "Creating a poll",
+        "initpoll.description": "Lets you create a poll for users.\nMinimum 2, Maximum 5 answers.\nAnswers must be separated using \" | \" character, Example:\n**v!initpoll pc vs console | pc | console | other**",
+        "initpoll.usage": "v!initpoll <title> | <answers (2-5)>",
+        "morse.brief": "Text to morse code and vice versa",
+        "morse.description": "Converts text to morse code and morse code to text.\nIn morse code words needs to be separated using \" | \", and letters with space. Example:\n**v!morse ...- .. .--. .--. . .-. | .. ... | .- | --. --- --- -.. | -... --- -**\nWill give the result : **\"vipper is a good bot\"**",
+        "morse.usage": "v!morse <morse code / text>"
     },
     "pl": {
         "fucking bitch": "kurwo pierdolona",
@@ -229,7 +235,13 @@
         "setlang.current": "Aktualnie ustawiony język: var(0)",
         "ocr.brief": "Wydrębnianie tekstu ze zdjęć",
         "ocr.description": "Wyodrębnia tekst ze zdjęć używając url do zdjęcia\n(Wklejanie zdjęć bezpośrednio jeszcze nie działa)",
-        "ocr.usage": "v!ocr <url zdjęcia>"
+        "ocr.usage": "v!ocr <url zdjęcia>",
+        "initpoll.brief": "Tworzenie ankiety",
+        "initpoll.description": "Tworzenie ankiety dla użytkowników.\nMinimalnie 2, maksymalnie 5 odpowiedzi.\nOdpowiedzi muszą być oddzielane znakiem \" | \", przykład:\n**v!initpoll pc vs konsola | pc | konsola | inne**",
+        "initpoll.usage": "v!initpoll <tytuł> | <odpowiedzi (2-5)>",
+        "morse.brief": "Tekst na kod morse'a i odwrotnie",
+        "morse.description": "Zamiana tekstu na kod morse'a oraz kodu morse'a na tekst.\nSłowa w kodzie morse'a muszą być oddzielone znakiem \"|\", a litery spacją. Przykład:\n**v!morse ...- .. .--. .--. . .-. | - --- | -.. --- -... .-. -.-- | -... --- -**\nDa wynik: **\"vipper to dobry bot\"**",
+        "morse.usage": "v!morse <kod morse'a / tekst>"
     },
     "de": {
         "fucking bitch": "verdammte Schlampe",

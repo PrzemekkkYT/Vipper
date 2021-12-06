@@ -277,7 +277,7 @@ class Music(commands.Cog):
             traceback.print_tb(inst.__traceback__)
             print("================! QUEUE !================")
     
-    @commands.command()
+    @commands.command(hidden=True)
     async def printqueue(self, ctx):
         print("\n====================================================================================\n")
         print(playqueue)
@@ -285,7 +285,7 @@ class Music(commands.Cog):
     def npq(self, pq):
         playqueue = pq
         
-    @commands.command()
+    @commands.command(hidden=True)
     async def interruptListening(self, ctx, url, playq=playqueue):
         if self.client.voice_clients:
             for clnt in self.client.voice_clients:

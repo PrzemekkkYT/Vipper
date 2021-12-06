@@ -71,7 +71,7 @@ async def act(ctx, member : discord.Member):
 
 #informacje o serwerze
 @client.command(hidden=True)
-async def serverinfo(ctx):
+async def serverinforaw(ctx):
     svowner = ctx.guild.owner
 
     await ctx.send("owner:{}".format(svowner.name))
@@ -90,7 +90,7 @@ async def owtest(ctx):
         print(attrib)
 
 #napisanie kto jest właścicielem serwera
-@client.command()
+@client.command(hidden=True)
 async def owner_find(ctx):
     guild_owner = client.get_user(int(ctx.guild.owner.id))
     await ctx.send(f'The owner of this server is: {guild_owner}')
@@ -105,7 +105,7 @@ async def embedtest(ctx, title, desc, fdt, fdc):
 
 #informacje o serwerze w formie embed
 @client.command()
-async def serverinfoembed(ctx):
+async def serverinfo(ctx):
     infoembed = discord.Embed(title=("Nazwa: "+ctx.guild.name), color=0x00FFAA)
     infoembed.set_thumbnail(url=ctx.guild.icon_url)
     infoembed.set_author(name="Informacje o serwerze")

@@ -2,10 +2,21 @@ import discord
 from discord.ext import commands
 from useful import translate, morse
 
+nicks = {}
+
 class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        with open("nicks.txt", encoding="utf-8") as file:
+            file_data = file.read().splitlines()
+            for line in file_data:
+                nickopt = line.split("::")
+                nicks[nickopt[0]] = nickopt[1]
+            file.close()
+    
     @commands.command(brief="spamuser.brief", description="spamuser.description", usage="spamuser.usage")
     async def spamuser(self, ctx, count, memid, delmsg:str="false", *, content="haha spam xD"):
         if delmsg.lower()=="true":
@@ -32,11 +43,28 @@ class Fun(commands.Cog):
                 result += morse[char]
             await ctx.send(result)
         
-    @commands.Cog.listener()
-    async def on_member_update(self, before, after):
-        if after.id == 725711519765233676:
-            if after.display_name != "Żuklaun":
-                await after.edit(nick="Żuklaun")
+    # @commands.command()
+    # async def nickreload(self, ctx):
+    #     with open("nicks.txt", encoding="utf-8") as file:
+    #         file_data = file.read().splitlines()
+    #         for line in file_data:
+    #             nickopt = line.split("::")
+    #             nicks[nickopt[0]] = nickopt[1]
+    #         file.close()
+    
+    # @commands.command()
+    # async def nicktest(self, ctx):
+    #     print(nicks)
+    #     for nick in nicks:
+    #         print(nick)
+    #     if any(str(ctx.message.author.id)==nick for nick in nicks):
+    #         print("ok")
+    
+    # @commands.Cog.listener()
+    # async def on_member_update(self, before, after):
+    #     if any(str(after.id)==nick for nick in nicks):
+    #         if after.display_name != nicks[str(after.id)]:
+    #             await after.edit(nick=nicks[str(after.id)])
     
 def setup(client):
     client.add_cog(Fun(client))

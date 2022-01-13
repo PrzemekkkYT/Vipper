@@ -106,7 +106,7 @@ def fixPolls(guild_id:str):
         with open("polls.json", "a+") as file:
             json.dump({}, file, indent=4, ensure_ascii=False) 
             file.close()
-    with open("polls.json", "r+") as file:
+    with open("polls.json", "r+", encoding="utf-8") as file:
         file_data = json.load(file)
         if guild_id not in file_data: file_data[guild_id] = {}
         file.seek(0)

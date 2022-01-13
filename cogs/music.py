@@ -2,7 +2,7 @@ from re import L
 import discord
 from discord.ext import commands
 from discord.utils import find
-import traceback, asyncio, youtube_dl, requests
+import traceback, asyncio, requests, youtube_dl
 from useful import translate
 
 playqueue = {}
@@ -103,6 +103,7 @@ class Music(commands.Cog):
         if playqueue[vc.guild.id]:
             del playqueue[vc.guild.id][0]
             fullplayqueueposition[vc.guild.id] += 1
+            print(playqueue[vc.guild.id])
             if len(playqueue[vc.guild.id]) > 0:
                 vc.play(discord.FFmpegPCMAudio(playqueue[vc.guild.id][0]['source'], **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(Music.play_next(self, vc, context), vc.loop))
                 await context.send(embed=musicEmbed(translate(context.guild.id, "playnext.nowplaying", [playqueue[vc.guild.id][0]['title']])))

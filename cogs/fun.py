@@ -62,9 +62,28 @@ class Fun(commands.Cog):
     
     # @commands.Cog.listener()
     # async def on_member_update(self, before, after):
-    #     if any(str(after.id)==nick for nick in nicks):
-    #         if after.display_name != nicks[str(after.id)]:
-    #             await after.edit(nick=nicks[str(after.id)])
+    #     # if any(str(after.id)==nick for nick in nicks):
+    #     #     if after.display_name != nicks[str(after.id)]:
+    #     #         await after.edit(nick=nicks[str(after.id)])
+    #     #if after.id == 725711519765233676:
+    #     if after.id == 725711519765233676:
+    #         if after.guild.id == 476835326220828682:
+    #             if before.activity is not None and after.activity is not None:
+    #                 if before.activity.name != after.activity.name and before.activity.name != "Spotify" and after.activity.name != "Spotify":
+    #                     print(f"{before.activity.name}, {after.activity.name}")
+    #                     await after.send("cocoicoasopcak")
+    #                     await after.send("Łukasz")
+    #                     await after.send(f"gra w {after.activity.name}")
+    #                     await after.send("ja nie moge")
+    #             elif before.activity is None and after.activity.name != "Spotify":
+    #                 print(f"None, {after.activity.name}")
+    #                 await after.send("cocoicoasopcak")
+    #                 await after.send("Łukasz")
+    #                 await after.send(f"gra w {after.activity.name}")
+    #                 await after.send("ja nie moge")
+    #             else:
+    #                 print(f"{before.activity.name}, None")
+                
     
 def setup(client):
     client.add_cog(Fun(client))

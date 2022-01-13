@@ -47,6 +47,7 @@ class MainTimer(commands.Cog):
             asyncio.run_coroutine_threadsafe(Music.interruptListening(self, commands.Context, "https://www.youtube.com/watch?v=WVQbxXvyG7A", playqueue), self.client.loop)
         elif (current_time=="18:00:00" and datetime.datetime.today().weekday()==3) or self.initEvents["freegames"]:
             self.initEvents["freegames"] = False
+            print("Init freegames")
             asyncio.run_coroutine_threadsafe(Utilities.postcurrentfg(Utilities, self.client), self.client.loop)
             
     @commands.command(hidden=True)

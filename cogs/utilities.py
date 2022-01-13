@@ -106,36 +106,40 @@ class Utilities(commands.Cog):
             print("===========! HELP TRACEBACK !===========")
 
     async def postcurrentfg(self, client):
+        print("1")
         self.fg_response = requests.request("GET", self.fg_request_url, headers=self.fg_request_headers)
         rj = self.fg_response.json()
         current = []
+        print("2")
         for i in range(len(rj["freeGames"]["current"])):
             if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
                 current.append(rj["freeGames"]["current"][-i])
-
+        print("3")
         for fg in current:
+            print("3.5")
             try:
                 free_until = fg["price"]["lineOffers"][0]["appliedRules"][0]["endDate"]
             except:
                 free_until = fg["expiryDate"]
-                
+            print("4")
             title = fg["title"]
             specialChars = "!#$%^&*()" 
             for specialChar in specialChars:
+                print("5")
                 title = title.replace(specialChar, "")
             embed = discord.Embed(title=fg["title"], url=("https://www.epicgames.com/store/pl/p/"+title.replace(" ", "-").lower()))
             embed.set_author(name="Darmowa giera tygodnia:", icon_url=client.user.avatar_url)
             embed.add_field(name="Darmowa od", value=useful.better_date(fg["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["startDate"]), inline=False)
             embed.add_field(name="Darmowa do", value=useful.better_date(free_until), inline=False)
             embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
-
+            print("6")
             for image in fg["keyImages"]:
                 if image["type"] == "OfferImageWide":
                     embed.set_image(url=image["url"].replace(" ","%20"))
-
+            print("7")
             embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
             embed.timestamp = datetime.utcnow()
-
+            print("8")
             self.cursor.execute("select * from free_games_channel")
             guilds_ids = self.cursor.fetchall()
             for gid in guilds_ids:
@@ -148,7 +152,9 @@ class Utilities(commands.Cog):
     async def ocr(self, ctx, url):
         response = requests.get(url)
         img = Image.open(io.BytesIO(response.content))
-        await ctx.send(pytesseract.image_to_string(img, lang="pol"))
+        embed = discord.Embed(title="Tekst z obrazu", description=f"```{pytesseract.image_to_string(img, lang='pol')}```")
+        embed.set_thumbnail(url=url)
+        await ctx.send(embed=embed)
         
     @commands.command(brief="setlang.brief", description="setlang.description", usage="setlang.usage")
     async def setlang(self, ctx, lang=None):
@@ -186,10 +192,10 @@ class Utilities(commands.Cog):
             return
         
         embed = discord.Embed(title=name, description="Wszystkie głosy: 0")
-        for option, i in zip(options, range(len(options))):
+        for option in options:
             embed.add_field(name=(option+" 0.00%"), value=("░"*20), inline=False)
         msg = await ctx.send(embed=embed, components=[components])
-        self.polls[msg.id] = {}
+        #self.polls[msg.id] = {}
         guild_id = str(ctx.guild.id)
         msg_id = str(msg.id)
         fixPolls(guild_id)
@@ -217,32 +223,76 @@ class Utilities(commands.Cog):
             user_id = str(interaction.user.id)
             polls_data = json.load(file)
             if msg_id in polls_data[guild_id]:
-                if user_id not in polls_data[guild_id][msg_id]["voters"]:
-                    if button_id not in polls_data[guild_id][msg_id]["options"]:
-                        polls_data[guild_id][msg_id]["options"][button_id] = 1
-                    else: polls_data[guild_id][msg_id]["options"][button_id] += 1
-                    full = 0
-                    print(f"podimid: {polls_data[guild_id][msg_id]['options']}")
-                    for option in polls_data[guild_id][msg_id]['options']:
-                        full += float(polls_data[guild_id][msg_id]['options'][option])
-                    embed = discord.Embed(title=interaction.message.embeds[0].title, description=f"Wszystkie głosy: {int(full)}")
-                    for option in polls_data[guild_id][msg_id]['options']:
-                        percent = ((float(polls_data[guild_id][msg_id]['options'][option])/full)*100)
-                        progress_bar = ""
-                        for i in range(1, 21):
-                            if percent < i*5:
-                                progress_bar += "░"
-                            else: progress_bar += "▓"
-                        embed.add_field(name=(option+': %.2f'%percent+"%"), value=progress_bar, inline=False)
-                    polls_data[guild_id][msg_id]["voters"][user_id] = button_id
-                    await interaction.message.edit(embed=embed)
-                    await interaction.respond(content=translate(interaction.guild.id, "poll."))
-                    file.seek(0)
-                    json.dump(polls_data, file, indent=4, ensure_ascii=False)
-                else: await interaction.respond(content="Odpowiedziałeś już w tym głosowaniu")
-            else:
-                await interaction.respond(content="Not a poll")
+                if datetime.now() < datetime.strptime(polls_data[guild_id][msg_id]["endTime"], "%Y-%m-%d %H:%M:%S.%f"):
+                    if user_id not in polls_data[guild_id][msg_id]["voters"]:
+                        if button_id not in polls_data[guild_id][msg_id]["options"]:
+                            polls_data[guild_id][msg_id]["options"][button_id] = 1
+                        else: polls_data[guild_id][msg_id]["options"][button_id] += 1
+                        full = 0
+                        print(f"podimid: {polls_data[guild_id][msg_id]['options']}")
+                        for option in polls_data[guild_id][msg_id]['options']:
+                            full += float(polls_data[guild_id][msg_id]['options'][option])
+                        embed = discord.Embed(title=interaction.message.embeds[0].title, description=f"Wszystkie głosy: {int(full)}")
+                        author = interaction.guild.get_member(int(polls_data[guild_id][msg_id]["host"]))
+                        embed.set_author(name=author.name, icon_url=author.avatar_url)
+                        endTime = polls_data[guild_id][msg_id]["endTime"].split(" ")
+                        embed.set_footer(text=f"Ankieta zakończy się {endTime[0]} o {endTime[1][:-10]}")
+                        for option in polls_data[guild_id][msg_id]['options']:
+                            percent = ((float(polls_data[guild_id][msg_id]['options'][option])/full)*100)
+                            progress_bar = ""
+                            for i in range(1, 21):
+                                if percent < i*5:
+                                    progress_bar += "░"
+                                else: progress_bar += "▓"
+                            embed.add_field(name=(option+': %.2f'%percent+"%"), value=progress_bar, inline=False)
+                        polls_data[guild_id][msg_id]["voters"][user_id] = button_id
+                        await interaction.message.edit(embed=embed)
+                        await interaction.respond(content=translate(interaction.guild.id, "poll.vote"))
+                        file.seek(0)
+                        json.dump(polls_data, file, indent=4, ensure_ascii=False)
+                    else: await interaction.respond(content="Odpowiedziałeś już w tym głosowaniu")
+                else: await interaction.respond(content="Nie można odpowiedzieć po czasie")
+            else: await interaction.respond(content="Not a poll")
             file.close()
+    
+    def is_dev(ctx):
+        return ctx.message.author.id == 183242057882664961
+    
+    @commands.command(hidden=True)
+    @commands.check(is_dev)
+    async def manualfreegames(self, ctx):
+        self.cursor.execute("select * from free_games_channel")
+        guilds_ids = self.cursor.fetchall()
+        with open("freegames.json", "r+", encoding="utf-8") as file:
+            file_data = json.load(file)
+            for game in file_data:
+                embed = discord.Embed(title=game["title"], url=game["url"])
+                if game["comment"] is None or game["comment"] == "":
+                    embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
+                else: embed.set_author(name=game["comment"], icon_url=self.client.user.avatar_url)
+                
+                try: embed.add_field(name="Darmowa od", value=useful.better_date(game["start-date"]), inline=False)
+                except: embed.add_field(name="Darmowa od", value=game["start-date"], inline=False)
+                
+                try: embed.add_field(name="Darmowa do", value=useful.better_date(game["end-date"]), inline=False)
+                except: embed.add_field(name="Darmowa do", value=game["end-date"], inline=False)
+                
+                try:
+                    if game["shop"] == "epicgames": embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
+                    elif game["shop"] == "steam": embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png")
+                    elif game["shop"] == "ubisoft": embed.set_thumbnail(url="https://www.pngkit.com/png/full/40-407342_2018-ubisoft-entertainment-ubisoft-logo-2017-png.png")
+                except:
+                    embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/No-Symbol.svg/768px-No-Symbol.svg.png")
+                
+                embed.set_image(url=game["img-url"])
+                embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
+                embed.timestamp = datetime.utcnow()
+                
+                for gid in guilds_ids:
+                    print(f"Posted free game on guild: {gid[0]}")
+                    guild = self.client.get_guild(gid[0])
+                    channel = guild.get_channel(gid[1])
+                    await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
     
 def setup(client):
     client.add_cog(Utilities(client))

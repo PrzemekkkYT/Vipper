@@ -116,6 +116,7 @@
         "initpoll.brief": "Creating a poll",
         "initpoll.description": "Lets you create a poll for users.\nMinimum 2, Maximum 5 answers.\nAnswers must be separated using \" | \" character, Example:\n**v!initpoll pc vs console | pc | console | other**",
         "initpoll.usage": "v!initpoll <title> | <answers (2-5)>",
+        "poll.vote": "Thanks for voting",
         "morse.brief": "Text to morse code and vice versa",
         "morse.description": "Converts text to morse code and morse code to text.\nIn morse code words needs to be separated using \" | \", and letters with space. Example:\n**v!morse ...- .. .--. .--. . .-. | .. ... | .- | --. --- --- -.. | -... --- -**\nWill give the result : **\"vipper is a good bot\"**",
         "morse.usage": "v!morse <morse code / text>"
@@ -239,6 +240,7 @@
         "initpoll.brief": "Tworzenie ankiety",
         "initpoll.description": "Tworzenie ankiety dla użytkowników.\nMinimalnie 2, maksymalnie 5 odpowiedzi.\nOdpowiedzi muszą być oddzielane znakiem \" | \", przykład:\n**v!initpoll pc vs konsola | pc | konsola | inne**",
         "initpoll.usage": "v!initpoll <tytuł> | <odpowiedzi (2-5)>",
+        "poll.vote": "Dziekuję za zagłosowanie",
         "morse.brief": "Tekst na kod morse'a i odwrotnie",
         "morse.description": "Zamiana tekstu na kod morse'a oraz kodu morse'a na tekst.\nSłowa w kodzie morse'a muszą być oddzielone znakiem \"|\", a litery spacją. Przykład:\n**v!morse ...- .. .--. .--. . .-. | - --- | -.. --- -... .-. -.-- | -... --- -**\nDa wynik: **\"vipper to dobry bot\"**",
         "morse.usage": "v!morse <kod morse'a / tekst>"

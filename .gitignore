@@ -9,3 +9,4 @@ nicks.txt
 __pycache__/
 cogs/__pycache__/
 *.pyc
+tts/*

@@ -260,39 +260,41 @@ class Utilities(commands.Cog):
     
     @commands.command(hidden=True)
     @commands.check(is_dev)
-    async def manualfreegames(self, ctx):
+    async def manualfreegames(self, ctx, fgurl=""):
+        if fgurl=="":
+            await ctx.send("Nie podano linku do pastebin zawierającego kod json darmówki!")
+            return
         self.cursor.execute("select * from free_games_channel")
         guilds_ids = self.cursor.fetchall()
-        with open("freegames.json", "r+", encoding="utf-8") as file:
-            file_data = json.load(file)
-            for game in file_data:
-                embed = discord.Embed(title=game["title"], url=game["url"])
-                if game["comment"] is None or game["comment"] == "":
-                    embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
-                else: embed.set_author(name=game["comment"], icon_url=self.client.user.avatar_url)
-                
-                try: embed.add_field(name="Darmowa od", value=useful.better_date(game["start-date"]), inline=False)
-                except: embed.add_field(name="Darmowa od", value=game["start-date"], inline=False)
-                
-                try: embed.add_field(name="Darmowa do", value=useful.better_date(game["end-date"]), inline=False)
-                except: embed.add_field(name="Darmowa do", value=game["end-date"], inline=False)
-                
-                try:
-                    if game["shop"] == "epicgames": embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
-                    elif game["shop"] == "steam": embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png")
-                    elif game["shop"] == "ubisoft": embed.set_thumbnail(url="https://www.pngkit.com/png/full/40-407342_2018-ubisoft-entertainment-ubisoft-logo-2017-png.png")
-                except:
-                    embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/No-Symbol.svg/768px-No-Symbol.svg.png")
-                
-                embed.set_image(url=game["img-url"])
-                embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
-                embed.timestamp = datetime.utcnow()
-                
-                for gid in guilds_ids:
-                    print(f"Posted free game on guild: {gid[0]}")
-                    guild = self.client.get_guild(gid[0])
-                    channel = guild.get_channel(gid[1])
-                    await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
+        file_data = json.loads(requests.get(fgurl).text)
+        for game in file_data:
+            embed = discord.Embed(title=game["title"], url=game["url"])
+            if game["comment"] is None or game["comment"] == "":
+                embed.set_author(name="Darmowa giera tygodnia:", icon_url=self.client.user.avatar_url)
+            else: embed.set_author(name=game["comment"], icon_url=self.client.user.avatar_url)
+            
+            try: embed.add_field(name="Darmowa od", value=useful.better_date(game["start-date"]), inline=False)
+            except: embed.add_field(name="Darmowa od", value=game["start-date"], inline=False)
+            
+            try: embed.add_field(name="Darmowa do", value=useful.better_date(game["end-date"]), inline=False)
+            except: embed.add_field(name="Darmowa do", value=game["end-date"], inline=False)
+            
+            try:
+                if game["shop"] == "epicgames": embed.set_thumbnail(url="https://cdn2.pu.nl/media/sven/epicgameslogo.png")
+                elif game["shop"] == "steam": embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png")
+                elif game["shop"] == "ubisoft": embed.set_thumbnail(url="https://www.pngkit.com/png/full/40-407342_2018-ubisoft-entertainment-ubisoft-logo-2017-png.png")
+            except:
+                embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/No-Symbol.svg/768px-No-Symbol.svg.png")
+            
+            embed.set_image(url=game["img-url"])
+            embed.set_footer(text="Kliknij na nazwę aby przejść do sklepu")
+            embed.timestamp = datetime.utcnow()
+            
+            for gid in guilds_ids:
+                print(f"Posted free game on guild: {gid[0]}")
+                guild = self.client.get_guild(gid[0])
+                channel = guild.get_channel(gid[1])
+                await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
     
 def setup(client):
     client.add_cog(Utilities(client))

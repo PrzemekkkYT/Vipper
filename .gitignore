@@ -10,3 +10,5 @@ __pycache__/
 cogs/__pycache__/
 *.pyc
 tts/*
+facts.txt
+entries.txt

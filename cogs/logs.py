@@ -108,21 +108,24 @@ class Logs(commands.Cog):
     #rejestracja konwersacji do pliku tekstowego
     @commands.Cog.listener()
     async def on_message(self, message):
-        today = date.today()
-        message_ca = useful.utc_to_local(message.created_at.utcnow())
-        path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
+        try:
+            today = date.today()
+            message_ca = useful.utc_to_local(message.created_at.utcnow())
+            path = "logs/chat/C-{0}-{1}.json".format(message.guild.id, today)
 
-        message_info = self.json_message_info(message, message_ca, "send")
-        if self.activelogsbool:
-            guild = message.guild
-            if guild:
-                if not os.path.exists(path) or os.path.getsize(path)<=0:
-                    with open(path, 'a', encoding="utf-8") as json_file: json.dump({"logs":[]}, json_file, indent=4)
-                with open(path, 'r+', encoding="utf-8") as json_file:
-                    file_data = json.load(json_file)
-                    file_data["logs"].append(message_info)
-                    json_file.seek(0)
-                    json.dump(file_data, json_file, indent=4, ensure_ascii=False)
+            message_info = self.json_message_info(message, message_ca, "send")
+            if self.activelogsbool:
+                guild = message.guild
+                if guild:
+                    if not os.path.exists(path) or os.path.getsize(path)<=0:
+                        with open(path, 'a', encoding="utf-8") as json_file: json.dump({"logs":[]}, json_file, indent=4)
+                    with open(path, 'r+', encoding="utf-8") as json_file:
+                        file_data = json.load(json_file)
+                        file_data["logs"].append(message_info)
+                        json_file.seek(0)
+                        json.dump(file_data, json_file, indent=4, ensure_ascii=False)
+        except Exception as exp:
+            print(exp)
 
     #rejestracja do pliku tekstowego czy edytowano wiadomość
     @commands.Cog.listener()

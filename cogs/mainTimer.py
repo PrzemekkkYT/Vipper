@@ -1,11 +1,13 @@
 from asyncio.events import new_event_loop
+import enum
 from cogs.music import Music
 from cogs.utilities import Utilities
 import discord
 from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.utils import find
-import requests, asyncio, datetime, threading
+import requests, asyncio, datetime, threading, random
+from googletrans import Translator
 
 class MainTimer(commands.Cog):
     def __init__(self, client):
@@ -21,7 +23,8 @@ class MainTimer(commands.Cog):
     initEvents = {
         "barka": False,
         "hejnal": False,
-        "freegames": False
+        "freegames": False,
+        "facts": False
     }
         
     @commands.Cog.listener()
@@ -49,6 +52,20 @@ class MainTimer(commands.Cog):
             self.initEvents["freegames"] = False
             print("Init freegames")
             asyncio.run_coroutine_threadsafe(Utilities.postcurrentfg(Utilities, self.client), self.client.loop)
+        elif current_time=="23:00:00" or self.initEvents["facts"]:
+            self.initEvents["facts"] = False
+            with open("facts.txt", "r+", encoding="utf-8") as file:
+                content = [k.strip("\n") for k in file.readlines()]
+                rand = random.randint(0, len(content))
+                fact = content[rand]
+                file.seek(0)
+                for num, line in enumerate(content):
+                    if num != rand:
+                        file.write(f"{line}\n")
+                print(f"{datetime.datetime.today()}: {fact}")
+                asyncio.run_coroutine_threadsafe(self.client.get_user(183242057882664961).send(f"Ciekawostka dnia:\n{Translator(service_urls = ['translate.google.com']).translate(fact, dest='pl').text}"), self.client.loop)
+                
+
             
     @commands.command(hidden=True)
     async def initevent(self, ctx, event:str):
@@ -58,6 +75,8 @@ class MainTimer(commands.Cog):
             self.initEvents["hejnal"] = True
         elif event.lower()=="freegames":
             self.initEvents["freegames"] = True
+        elif event.lower()=="facts":
+            self.initEvents["facts"] = True
         else:
             await ctx.send("Nie znaleziono podanego eventu")
         

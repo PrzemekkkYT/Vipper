@@ -24,6 +24,7 @@ config = json.load(config_file)
 async def on_ready():
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="dlaczego Tede kurwą jest"))
     presenceLoop.start()
+    await client.get_user(183242057882664961).send(f"Bot {client.user.name} is ready")
     #await client.change_presence(status=discord.Status.idle, activity=discord.Game("dlaczego Tede kurwą jest"))
     print("Bot is ready")
 

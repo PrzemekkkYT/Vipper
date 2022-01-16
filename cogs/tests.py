@@ -447,6 +447,10 @@ class Tests(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     async def timetest(self, ctx):
         print(datetime.now() < (datetime.now()-timedelta(minutes=1)))
+
+    @commands.command()
+    async def pastebin(self, ctx, url):
+        print(requests.get(url).text)
         
         
         

@@ -1,50 +1,50 @@
 import discord
 from discord.ext import commands
-from useful import VMath
+from useful import VMath, translate
 
 class Math(commands.Cog):
     def __init__(self, client):
         self.client = client
     
-    @commands.command(brief="Konwerter postaci funkcji kwadratowej", description="Zamienia postać funkcji kwadratowej między ogólną, kanoniczną i iloczynową.\nTypy konwersji:\ni>o - iloczynowa na ogólną\ni>k - iloczynowa na kanoniczną\no>i - ogólna na iloczynową\no>k - ogólna na kanoniczną\nk>i - kanoniczna na iloczynową\nk>o - kanoniczna na ogólną", usage="v!pfkwconv <typ konwersji>")
+    @commands.command(brief="pfkwconv.brief", description="pfkwconv.description", usage="pfkwconv.usage")
     async def pfkwconv(self, ctx, type:str):
-        if type=="i>o":
+        if type=="i>o" or type=="f>s":
             try:
-                await ctx.send("Podaj funkcję w postaci iloczynowej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.f"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.itoo(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        elif type=="i>k":
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        elif type=="i>k" or type=="f>v":
             try:
-                await ctx.send("Podaj funkcję w postaci iloczynowej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.f"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.itok(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        elif type=="o>i":
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        elif type=="o>i" or type=="s>f":
             try:
-                await ctx.send("Podaj funkcję w postaci ogólnej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.s"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.otoi(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        elif type=="o>k":
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        elif type=="o>k" or type=="s>v":
             try:
-                await ctx.send("Podaj funkcję w postaci ogólnej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.s"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.otok(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        elif type=="k>i":
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        elif type=="k>i" or type=="v>f":
             try:
-                await ctx.send("Podaj funkcję w postaci kanonicznej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.v"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.ktoi(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        elif type=="k>o":
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        elif type=="k>o" or type=="v>s":
             try:
-                await ctx.send("Podaj funkcję w postaci kanonicznej")
+                await ctx.send(translate(ctx.guild.id, "pfkwconv.v"))
                 message = await ctx.bot.wait_for('message', timeout=60.0)
                 await ctx.send(VMath.ktoo(message.content))
-            except: await ctx.send(f"\"{message.content}\" nie jest funkcją kwadratową.")
-        else: await ctx.send("Nie ma takiej konwersji.")
+            except: await ctx.send(translate(ctx.guild.id, "pfkwconv.not", [message.content]))
+        else: await ctx.send(translate(ctx.guild.id, "pfkwconv.noopt"))
         
         
     

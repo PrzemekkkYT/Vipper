@@ -119,7 +119,15 @@
         "poll.vote": "Thanks for voting",
         "morse.brief": "Text to morse code and vice versa",
         "morse.description": "Converts text to morse code and morse code to text.\nIn morse code words needs to be separated using \" | \", and letters with space. Example:\n**v!morse ...- .. .--. .--. . .-. | .. ... | .- | --. --- --- -.. | -... --- -**\nWill give the result : **\"vipper is a good bot\"**",
-        "morse.usage": "v!morse <morse code / text>"
+        "morse.usage": "v!morse <morse code / text>",
+        "pfkwconv.brief": "Quadratic form converter ",
+        "pfkwconv.description": "Changes the form of a quadratic function between standard, vertex and factored.\nConversion types:\nf>s - factored to standard\nf>v - factored to vertex\ns>f - standard to factored\ns>v - standard to vertex\nv>f - vertex to factored\nv>s - vertex to standard",
+        "pfkwconv.usage": "v!pfkwconv <convertion type>",
+        "pfkwconv.f": "Enter a function in factored form",
+        "pfkwconv.s": "Enter a function in standard form",
+        "pfkwconv.v": "Enter a function in vertex form",
+        "pfkwconv.not": "\"var(0)\" is not a quadratic function",
+        "pfkwconv.noopt": "There is not convertion like that."
     },
     "pl": {
         "fucking bitch": "kurwo pierdolona",
@@ -243,7 +251,15 @@
         "poll.vote": "Dziekuję za zagłosowanie",
         "morse.brief": "Tekst na kod morse'a i odwrotnie",
         "morse.description": "Zamiana tekstu na kod morse'a oraz kodu morse'a na tekst.\nSłowa w kodzie morse'a muszą być oddzielone znakiem \"|\", a litery spacją. Przykład:\n**v!morse ...- .. .--. .--. . .-. | - --- | -.. --- -... .-. -.-- | -... --- -**\nDa wynik: **\"vipper to dobry bot\"**",
-        "morse.usage": "v!morse <kod morse'a / tekst>"
+        "morse.usage": "v!morse <kod morse'a / tekst>",
+        "pfkwconv.brief": "Konwerter postaci funkcji kwadratowej",
+        "pfkwconv.description": "Zamienia postać funkcji kwadratowej między ogólną, kanoniczną i iloczynową.\nTypy konwersji:\ni>o - iloczynowa na ogólną\ni>k - iloczynowa na kanoniczną\no>i - ogólna na iloczynową\no>k - ogólna na kanoniczną\nk>i - kanoniczna na iloczynową\nk>o - kanoniczna na ogólną",
+        "pfkwconv.usage": "v!pfkwconv <typ konwersji>",
+        "pfkwconv.i": "Podaj funkcję w postaci iloczynowej",
+        "pfkwconv.o": "Podaj funkcję w postaci ogólnej",
+        "pfkwconv.k": "Podaj funkcję w postaci kanonicznej",
+        "pfkwconv.not": "\"var(0)\" nie jest funkcją kwadratową.",
+        "pfkwconv.noopt": "Nie ma takiej konwersji."
     },
     "de": {
         "fucking bitch": "verdammte Schlampe",

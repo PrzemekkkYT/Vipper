@@ -7,7 +7,8 @@ from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.utils import find
 import requests, asyncio, datetime, threading, random
-from googletrans import Translator
+from deep_translator import GoogleTranslator
+import translate, googletrans
 
 class MainTimer(commands.Cog):
     def __init__(self, client):
@@ -63,8 +64,12 @@ class MainTimer(commands.Cog):
                     if num != rand:
                         file.write(f"{line}\n")
                 print(f"{datetime.datetime.today()}: {fact}")
-                asyncio.run_coroutine_threadsafe(self.client.get_user(183242057882664961).send(f"Ciekawostka dnia:\n{Translator(service_urls = ['translate.google.com']).translate(fact, dest='pl').text}"), self.client.loop)
-                
+                # #translate
+                # asyncio.run_coroutine_threadsafe(self.client.get_user(183242057882664961).send(f"translate:\n{translate.Translator(to_lang='pl').translate(fact)}"), self.client.loop)
+                # #googletrans
+                # asyncio.run_coroutine_threadsafe(self.client.get_user(183242057882664961).send(f"googletrans:\n{googletrans.Translator(service_urls = ['translate.google.com']).translate(fact, dest='pl').text}"), self.client.loop)
+                #deep_translator
+                asyncio.run_coroutine_threadsafe(self.client.get_user(725711519765233676).send(f"Ciekawostka dnia:\n{GoogleTranslator(target='pl').translate(fact)}"), self.client.loop)
 
             
     @commands.command(hidden=True)

@@ -1,5 +1,8 @@
 import math
+import random
 from typing import Match
+
+from deep_translator import GoogleTranslator
 from cogs.music import Music, FFMPEG_OPTIONS
 import discord
 import sqlite3, json, os, requests, io, useful, threading, asyncio
@@ -15,6 +18,8 @@ from discord.abc import Messageable
 from datetime import date, datetime, timedelta
 from gtts import gTTS
 from useful import fixConfig, translate, fixPolls, morse
+# from textblob import TextBlob
+import langid
 
 class Tests(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, client):
@@ -394,12 +399,12 @@ class Tests(commands.Cog, command_attrs=dict(hidden=True)):
         match time[-1]:
             case "m":
                 endTime += timedelta(minutes=int(time[:-1]))
-                # if int(time[:-1])>=5:
-                #     endTime += timedelta(minutes=int(time[:-1]))
-                #     await ctx.send(endTime)
-                # else:
-                #     await ctx.send("Ankieta musi trwać conajmniej 5 minut")
-                #     return
+                if int(time[:-1])>=5:
+                    endTime += timedelta(minutes=int(time[:-1]))
+                    await ctx.send(endTime)
+                else:
+                    await ctx.send("Ankieta musi trwać conajmniej 5 minut")
+                    return
             case "h":
                 endTime += timedelta(hours=int(time[:-1]))
                 await ctx.send(endTime)
@@ -451,7 +456,19 @@ class Tests(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command()
     async def pastebin(self, ctx, url):
         print(requests.get(url).text)
-        
+
+    @commands.command()
+    async def translatemixer(self, ctx, times, *, text):
+        langs = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'ceb', 'ny', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'et', 'tl', 'fi', 'fr', 'fy', 'gl', 'ka', 'de', 'el', 'gu', 'ht', 'ha', 'haw', 'iw', 'hi', 'hmn', 'hu', 'is', 'ig', 'id', 'ga', 'it', 'ja', 'jw', 'kn', 'kk', 'km', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'ml', 'mt', 'mi', 'mr', 'mn', 'my', 'ne', 'no', 'ps', 'fa', 'pl', 'pt', 'pa', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sd', 'si', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tg', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'cy', 'xh', 'yi', 'yo', 'zu', 'fil', 'he']
+        print("translatemixer")
+        # lang = TextBlob(text).detect_language()
+        lang = langid.classify(text)
+        for i in range(int(times)):
+            rnglang = random.choice(langs)
+            text = GoogleTranslator(target=rnglang).translate(text)
+            await ctx.send(f"{rnglang}: {text}")
+        text = GoogleTranslator(target=lang[0]).translate(text)
+        await ctx.send(f"{lang[0]}: {text}")
         
         
 def setup(client):

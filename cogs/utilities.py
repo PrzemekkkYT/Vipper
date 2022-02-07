@@ -107,7 +107,7 @@ class Utilities(commands.Cog):
 
     async def postcurrentfg(self, client):
         print("1")
-        self.fg_response = requests.request("GET", self.fg_request_url, headers=self.fg_request_headers)
+        self.fg_response = requests.get(self.fg_request_url, headers=self.fg_request_headers)
         rj = self.fg_response.json()
         current = []
         print("2")
@@ -179,7 +179,7 @@ class Utilities(commands.Cog):
         else: await ctx.send(translate(ctx.guild.id, "setlang.current", [json.load(open("config.json", 'r+', encoding="utf-8"))["configs"][str(ctx.guild.id)]["lang"]]))
     
     @commands.command(brief="initpoll.brief", description="initpoll.description", usage="initpoll.usage")
-    async def initpoll(self, ctx, *, options):
+    async def initpollold(self, ctx, *, options):
         options = options.split(" | ")
         name = options.pop(0)
         print(options)
@@ -209,50 +209,6 @@ class Utilities(commands.Cog):
                 file_data[guild_id][msg_id]["options"][option] = 0
             file.seek(0)
             json.dump(file_data, file, indent=4, ensure_ascii=False)
-            file.close()
-            
-    @commands.Cog.listener()
-    async def on_button_click(self, interaction):
-        # await interaction.respond(content=f"Button Clicked, {interaction.custom_id}")
-        # await interaction.message.edit(embed=discord.Embed(title=interaction.custom_id))
-        fixPolls(str(interaction.guild.id))
-        with open("polls.json", "r+", encoding="utf-8") as file:
-            guild_id = str(interaction.message.guild.id)
-            msg_id = str(interaction.message.id)
-            button_id = str(interaction.custom_id)
-            user_id = str(interaction.user.id)
-            polls_data = json.load(file)
-            if msg_id in polls_data[guild_id]:
-                if datetime.now() < datetime.strptime(polls_data[guild_id][msg_id]["endTime"], "%Y-%m-%d %H:%M:%S.%f"):
-                    if user_id not in polls_data[guild_id][msg_id]["voters"]:
-                        if button_id not in polls_data[guild_id][msg_id]["options"]:
-                            polls_data[guild_id][msg_id]["options"][button_id] = 1
-                        else: polls_data[guild_id][msg_id]["options"][button_id] += 1
-                        full = 0
-                        print(f"podimid: {polls_data[guild_id][msg_id]['options']}")
-                        for option in polls_data[guild_id][msg_id]['options']:
-                            full += float(polls_data[guild_id][msg_id]['options'][option])
-                        embed = discord.Embed(title=interaction.message.embeds[0].title, description=f"Wszystkie głosy: {int(full)}")
-                        author = interaction.guild.get_member(int(polls_data[guild_id][msg_id]["host"]))
-                        embed.set_author(name=author.name, icon_url=author.avatar_url)
-                        endTime = polls_data[guild_id][msg_id]["endTime"].split(" ")
-                        embed.set_footer(text=f"Ankieta zakończy się {endTime[0]} o {endTime[1][:-10]}")
-                        for option in polls_data[guild_id][msg_id]['options']:
-                            percent = ((float(polls_data[guild_id][msg_id]['options'][option])/full)*100)
-                            progress_bar = ""
-                            for i in range(1, 21):
-                                if percent < i*5:
-                                    progress_bar += "░"
-                                else: progress_bar += "▓"
-                            embed.add_field(name=(option+': %.2f'%percent+"%"), value=progress_bar, inline=False)
-                        polls_data[guild_id][msg_id]["voters"][user_id] = button_id
-                        await interaction.message.edit(embed=embed)
-                        await interaction.respond(content=translate(interaction.guild.id, "poll.vote"))
-                        file.seek(0)
-                        json.dump(polls_data, file, indent=4, ensure_ascii=False)
-                    else: await interaction.respond(content="Odpowiedziałeś już w tym głosowaniu")
-                else: await interaction.respond(content="Nie można odpowiedzieć po czasie")
-            else: await interaction.respond(content="Not a poll")
             file.close()
     
     def is_dev(ctx):

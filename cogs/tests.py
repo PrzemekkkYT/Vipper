@@ -387,69 +387,6 @@ class Tests(commands.Cog, command_attrs=dict(hidden=True)):
         await ctx.send(f"Użytkownik z ID: 397068546154299404 to: {ctx.guild.get_member(int(id)).name}")
 
     @commands.command()
-    async def initpoll2(self, ctx, time, *, options):
-        try: int(time[:-1])
-        except:
-            await ctx.send("Niepoprawny czas")
-            return
-        options = options.split(" | ")
-        name = options.pop(0)
-        print(options)
-        endTime = datetime.now()
-        match time[-1]:
-            case "m":
-                endTime += timedelta(minutes=int(time[:-1]))
-                if int(time[:-1])>=5:
-                    endTime += timedelta(minutes=int(time[:-1]))
-                    await ctx.send(endTime)
-                else:
-                    await ctx.send("Ankieta musi trwać conajmniej 5 minut")
-                    return
-            case "h":
-                endTime += timedelta(hours=int(time[:-1]))
-                await ctx.send(endTime)
-            case "d":
-                endTime += timedelta(days=int(time[:-1]))
-                await ctx.send(endTime)
-            case "w":
-                endTime += timedelta(weeks=int(time[:-1]))
-                await ctx.send(endTime)
-            case _:
-                await ctx.send("Niepoprawny czas")
-                return
-        components = []
-        if 1 < len(options) <= 5:
-            for option in options:
-                components.append(Button(label=option, custom_id=option))
-        else:
-            await ctx.send("Minimalnie 2 i maksymalnie 5 możliwości!")
-            return
-            
-        embed = discord.Embed(title=name, description="Wszystkie głosy: 0")
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-        embed.set_footer(text=f"Ankieta zakończy się {datetime.strftime(endTime, '%d.%m.%Y')} o {datetime.strftime(endTime, '%H:%M')}")
-        for option in options:
-            embed.add_field(name=(option+" 0.00%"), value=("░"*20), inline=False)
-        msg = await ctx.send(embed=embed, components=[components])
-        #self.polls[msg.id] = {}
-        guild_id = str(ctx.guild.id)
-        msg_id = str(msg.id)
-        fixPolls(guild_id)
-        with open("polls.json", "r+", encoding="utf-8") as file:
-            file_data = json.load(file)
-            if msg_id not in file_data[guild_id]: file_data[guild_id][msg_id] = {}
-            if "host" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["host"] = str(ctx.author.id)
-            if "endTime" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["endTime"] = str(endTime)
-            if "title" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["title"] = name
-            if "options" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["options"] = {}
-            if "voters" not in file_data[guild_id][msg_id]: file_data[guild_id][msg_id]["voters"] = {}
-            for option in options:
-                file_data[guild_id][msg_id]["options"][option] = 0
-            file.seek(0)
-            json.dump(file_data, file, indent=4, ensure_ascii=False)
-            file.close()
-
-    @commands.command()
     async def timetest(self, ctx):
         print(datetime.now() < (datetime.now()-timedelta(minutes=1)))
 

@@ -24,12 +24,17 @@ class Utilities(commands.Cog):
     cogs = {}
     cogs['uncategorized'] = []
 
-    fg_request_url = "https://free-epic-games.p.rapidapi.com/free"
-    fg_request_headers = {
-        'x-rapidapi-host': "free-epic-games.p.rapidapi.com",
-        'x-rapidapi-key': "4a35b378bemsh2dad8e6bec18de1p119880jsne3276f501ab7"
-    }
-    fg_response = requests.request("GET", fg_request_url, headers=fg_request_headers)
+    # fg_request_url = "https://free-epic-games.p.rapidapi.com/free"
+    # fg_request_headers = {
+    #     'x-rapidapi-host': "free-epic-games.p.rapidapi.com",
+    #     'x-rapidapi-key': "4a35b378bemsh2dad8e6bec18de1p119880jsne3276f501ab7"
+    # }
+    # fg_response = requests.request("GET", fg_request_url, headers=fg_request_headers)
+    api_uri = (
+            'https://store-site-backend-static.ak.epicgames.com/'
+            'freeGamesPromotions?locale=pl'
+            )
+    fg_response = requests.get(api_uri).json()
 
     con = sqlite3.connect('tests.db')
     cursor = con.cursor()
@@ -107,13 +112,22 @@ class Utilities(commands.Cog):
 
     async def postcurrentfg(self, client):
         print("1")
-        self.fg_response = requests.get(self.fg_request_url, headers=self.fg_request_headers)
-        rj = self.fg_response.json()
+        # self.fg_response = requests.get(self.fg_request_url, headers=self.fg_request_headers)
+        rj = self.fg_response
         current = []
         print("2")
-        for i in range(len(rj["freeGames"]["current"])):
-            if rj["freeGames"]["current"][-i]["promotions"] and rj["freeGames"]["current"][-i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
-                current.append(rj["freeGames"]["current"][-i])
+        print(len(rj["data"]["Catalog"]["searchStore"]["elements"]))
+        for i in range(len(rj["data"]["Catalog"]["searchStore"]["elements"])):
+            print("2.1", i)
+            if rj["data"]["Catalog"]["searchStore"]["elements"][i]["promotions"] is not None:
+                print("2.2")
+                if rj["data"]["Catalog"]["searchStore"]["elements"][i]["promotions"]["promotionalOffers"]:
+                    if rj["data"]["Catalog"]["searchStore"]["elements"][i]["promotions"]["promotionalOffers"][0]["promotionalOffers"][0]["discountSetting"]["discountPercentage"] == 0:
+                        print("2.5")
+                        current.append(rj["data"]["Catalog"]["searchStore"]["elements"][i])
+                    else: pass
+                else: pass
+            else: pass
         print("3")
         for fg in current:
             print("3.5")
@@ -146,7 +160,8 @@ class Utilities(commands.Cog):
                 print(gid[0])
                 guild = client.get_guild(gid[0])
                 channel = guild.get_channel(gid[1])
-                await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
+                # await channel.send(content="@everyone", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
+                await channel.send(content=" ", embed=embed, allowed_mentions=AllowedMentions(everyone=True))
 
     @commands.command(brief="ocr.brief", description="ocr.description", usage="ocr.usage")
     async def ocr(self, ctx, url):

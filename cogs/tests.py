@@ -406,6 +406,11 @@ class Tests(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(f"{rnglang}: {text}")
         text = GoogleTranslator(target=lang[0]).translate(text)
         await ctx.send(f"{lang[0]}: {text}")
+
+    @commands.command()
+    async def rolecolor(self, ctx, role_id):
+        role = ctx.guild.get_role(int(role_id))
+        await ctx.send(f"value: {role.color.value}, r: {role.color.r}, g: {role.color.g}, b: {role.color.b}")
         
         
 def setup(client):
